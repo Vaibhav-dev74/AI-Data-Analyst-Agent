@@ -1,0 +1,501 @@
+order_id,order_date,customer_id,region,category,product_name,units_sold,unit_price,discount,revenue,profit
+ORD-10000,2024-01-01,CUST-174,North America,Office Supplies,Dry Erase Board,15,626.21,0.05,9393.15,2982.86
+ORD-10001,2024-01-02,CUST-101,North America,Office Supplies,Dry Erase Board,4,134.29,0.2,537.16,179.84
+ORD-10002,2024-01-03,CUST-157,Europe,Apparel,Rainproof Windbreaker,6,15.65,0.0,93.9,42.01
+ORD-10003,2024-01-04,CUST-287,Latin America,Furniture,Ergonomic Mesh Chair,17,453.19,0.15,7704.23,1941.11
+ORD-10004,2024-01-05,CUST-163,Europe,Apparel,Running Shoes,15,531.35,0.15,7970.25,1962.37
+ORD-10005,2024-01-06,CUST-231,North America,Electronics,Smart 4K Monitor,19,583.06,0.05,11078.14,2976.31
+ORD-10006,2024-01-07,CUST-183,Europe,Electronics,USB-C Docking Station,18,336.82,0.05,6062.76,759.48
+ORD-10007,2024-01-08,CUST-180,Latin America,Apparel,Running Shoes,7,524.35,0.1,3670.45,1449.66
+ORD-10008,2024-01-09,CUST-103,Latin America,Apparel,Performance Polo,4,275.28,0.05,1101.12,321.11
+ORD-10009,2024-01-10,CUST-113,Asia Pacific,Furniture,Ergonomic Mesh Chair,18,662.24,0.15,11920.32,5126.15
+ORD-10010,2024-01-11,CUST-181,Asia Pacific,Office Supplies,Dry Erase Board,8,491.32,0.2,3930.56,1147.23
+ORD-10011,2024-01-12,CUST-188,Latin America,Office Supplies,Laser Paper Ream,13,132.67,0.0,1724.71,663.54
+ORD-10012,2024-01-13,CUST-180,Latin America,Office Supplies,Laser Paper Ream,1,180.93,0.1,180.93,22.04
+ORD-10013,2024-01-14,CUST-140,Asia Pacific,Apparel,Running Shoes,1,520.98,0.05,520.98,221.77
+ORD-10014,2024-01-15,CUST-198,North America,Apparel,Running Shoes,8,390.29,0.2,3122.32,472.99
+ORD-10015,2024-01-16,CUST-100,Europe,Apparel,Rainproof Windbreaker,3,409.3,0.1,1227.9,195.81
+ORD-10016,2024-01-17,CUST-141,Asia Pacific,Electronics,Wireless Noise-Canceling Headphones,14,427.32,0.05,5982.48,1749.89
+ORD-10017,2024-01-18,CUST-250,Asia Pacific,Apparel,Tech Fleece Hoodie,7,411.93,0.15,2883.51,882.01
+ORD-10018,2024-01-19,CUST-185,Asia Pacific,Office Supplies,Laser Paper Ream,11,184.56,0.1,2030.16,875.29
+ORD-10019,2024-01-20,CUST-127,Europe,Apparel,Performance Polo,13,261.85,0.15,3404.05,526.99
+ORD-10020,2024-01-21,CUST-289,Latin America,Apparel,Rainproof Windbreaker,11,285.83,0.0,3144.13,503.97
+ORD-10021,2024-01-22,CUST-236,North America,Electronics,UltraBook Pro,20,309.39,0.1,6187.8,1364.89
+ORD-10022,2024-01-23,CUST-217,North America,Furniture,Ergonomic Mesh Chair,19,239.96,0.1,4559.24,914.41
+ORD-10023,2024-01-24,CUST-151,Latin America,Apparel,Rainproof Windbreaker,9,352.2,0.05,3169.8,448.26
+ORD-10024,2024-01-25,CUST-286,Asia Pacific,Apparel,Performance Polo,2,609.75,0.0,1219.5,205.94
+ORD-10025,2024-01-26,CUST-246,Europe,Electronics,Wireless Noise-Canceling Headphones,22,42.6,0.0,937.2,219.19
+ORD-10026,2024-01-27,CUST-282,North America,Furniture,Standing Desk Pro,12,388.9,0.15,4666.8,1411.5
+ORD-10027,2024-01-28,CUST-197,Asia Pacific,Office Supplies,Dry Erase Board,17,623.06,0.15,10592.02,2556.58
+ORD-10028,2024-01-29,CUST-169,Asia Pacific,Furniture,Standing Desk Pro,16,681.62,0.1,10905.92,1851.14
+ORD-10029,2024-01-30,CUST-294,Asia Pacific,Apparel,Tech Fleece Hoodie,20,287.18,0.05,5743.6,1106.67
+ORD-10030,2024-01-31,CUST-203,Latin America,Office Supplies,Heavy-Duty Stapler,7,160.6,0.05,1124.2,391.23
+ORD-10031,2024-02-01,CUST-106,Latin America,Electronics,Smart 4K Monitor,18,787.12,0.1,14168.16,5802.17
+ORD-10032,2024-02-02,CUST-228,Europe,Apparel,Rainproof Windbreaker,16,478.59,0.05,7657.44,2257.3
+ORD-10033,2024-02-03,CUST-198,Latin America,Apparel,Performance Polo,5,766.85,0.0,3834.25,1261.17
+ORD-10034,2024-02-04,CUST-251,Latin America,Office Supplies,Dry Erase Board,3,730.03,0.0,2190.09,555.16
+ORD-10035,2024-02-05,CUST-211,North America,Apparel,Running Shoes,8,670.76,0.1,5366.08,1828.58
+ORD-10036,2024-02-06,CUST-288,Asia Pacific,Furniture,Ergonomic Mesh Chair,18,149.27,0.1,2686.86,808.97
+ORD-10037,2024-02-07,CUST-227,North America,Electronics,USB-C Docking Station,4,213.1,0.15,852.4,193.82
+ORD-10038,2024-02-08,CUST-214,Asia Pacific,Apparel,Running Shoes,17,272.23,0.1,4627.91,1383.92
+ORD-10039,2024-02-09,CUST-281,Europe,Furniture,Filing Cabinet,14,507.54,0.1,7105.56,3148.01
+ORD-10040,2024-02-10,CUST-296,Asia Pacific,Apparel,Running Shoes,2,307.32,0.0,614.64,204.6
+ORD-10041,2024-02-11,CUST-271,Latin America,Apparel,Tech Fleece Hoodie,19,492.62,0.0,9359.78,3497.03
+ORD-10042,2024-02-12,CUST-136,North America,Apparel,Performance Polo,14,778.91,0.0,10904.74,2640.61
+ORD-10043,2024-02-13,CUST-215,North America,Apparel,Tech Fleece Hoodie,14,822.16,0.0,11510.24,5041.42
+ORD-10044,2024-02-14,CUST-124,North America,Office Supplies,Laser Paper Ream,23,239.18,0.05,5501.14,1541.1
+ORD-10045,2024-02-15,CUST-226,Europe,Furniture,Filing Cabinet,3,491.0,0.05,1473.0,224.0
+ORD-10046,2024-02-16,CUST-269,Europe,Office Supplies,Gel Ink Pens 12-Pack,17,723.64,0.2,12301.88,2030.86
+ORD-10047,2024-02-17,CUST-234,Asia Pacific,Office Supplies,Gel Ink Pens 12-Pack,18,739.01,0.05,13302.18,5605.13
+ORD-10048,2024-02-18,CUST-214,North America,Electronics,USB-C Docking Station,20,557.72,0.15,11154.4,3922.43
+ORD-10049,2024-02-19,CUST-252,Latin America,Office Supplies,Heavy-Duty Stapler,2,93.47,0.1,186.94,58.11
+ORD-10050,2024-02-20,CUST-269,Europe,Furniture,Filing Cabinet,22,508.35,0.15,11183.7,1454.61
+ORD-10051,2024-02-21,CUST-159,Europe,Furniture,Filing Cabinet,11,121.1,0.2,1332.1,389.43
+ORD-10052,2024-02-22,CUST-193,North America,Apparel,Rainproof Windbreaker,7,86.27,0.15,603.89,82.77
+ORD-10053,2024-02-23,CUST-205,Asia Pacific,Office Supplies,Heavy-Duty Stapler,8,621.29,0.15,4970.32,2197.04
+ORD-10054,2024-02-24,CUST-216,North America,Furniture,Filing Cabinet,24,241.14,0.05,5787.36,1532.84
+ORD-10055,2024-02-25,CUST-100,Asia Pacific,Furniture,Filing Cabinet,9,589.9,0.05,5309.1,739.05
+ORD-10056,2024-02-26,CUST-228,Latin America,Office Supplies,Gel Ink Pens 12-Pack,22,611.69,0.2,13457.18,4546.71
+ORD-10057,2024-02-27,CUST-253,Asia Pacific,Apparel,Tech Fleece Hoodie,5,525.79,0.15,2628.95,679.5
+ORD-10058,2024-02-28,CUST-146,North America,Apparel,Running Shoes,22,27.02,0.2,594.44,94.1
+ORD-10059,2024-02-29,CUST-275,Europe,Electronics,Wireless Noise-Canceling Headphones,20,161.4,0.05,3228.0,405.64
+ORD-10060,2024-03-01,CUST-109,Latin America,Electronics,Smart 4K Monitor,1,403.0,0.05,403.0,134.77
+ORD-10061,2024-03-02,CUST-285,Latin America,Furniture,Ergonomic Mesh Chair,2,232.85,0.1,465.7,58.24
+ORD-10062,2024-03-03,CUST-227,Latin America,Apparel,Tech Fleece Hoodie,5,586.11,0.05,2930.55,947.24
+ORD-10063,2024-03-04,CUST-260,Latin America,Apparel,Running Shoes,24,580.44,0.0,13930.56,4307.48
+ORD-10064,2024-03-05,CUST-142,Asia Pacific,Electronics,Smart 4K Monitor,5,537.66,0.05,2688.3,1050.43
+ORD-10065,2024-03-06,CUST-134,North America,Apparel,Tech Fleece Hoodie,12,99.15,0.1,1189.8,149.93
+ORD-10066,2024-03-07,CUST-214,Europe,Office Supplies,Laser Paper Ream,8,336.81,0.05,2694.48,929.41
+ORD-10067,2024-03-08,CUST-120,Latin America,Electronics,Smart 4K Monitor,21,305.86,0.15,6423.06,2756.1
+ORD-10068,2024-03-09,CUST-276,Latin America,Electronics,UltraBook Pro,10,368.6,0.1,3686.0,1133.86
+ORD-10069,2024-03-10,CUST-111,Latin America,Office Supplies,Dry Erase Board,18,223.76,0.2,4027.68,1254.94
+ORD-10070,2024-03-11,CUST-212,North America,Electronics,Smart 4K Monitor,23,645.04,0.0,14835.92,2285.19
+ORD-10071,2024-03-12,CUST-239,Latin America,Furniture,Executive Bookshelf,22,263.53,0.15,5797.66,887.01
+ORD-10072,2024-03-13,CUST-182,Asia Pacific,Electronics,UltraBook Pro,12,311.35,0.15,3736.2,1628.03
+ORD-10073,2024-03-14,CUST-222,Latin America,Furniture,Filing Cabinet,21,91.57,0.15,1922.97,613.05
+ORD-10074,2024-03-15,CUST-141,North America,Electronics,USB-C Docking Station,23,667.38,0.2,15349.74,2416.71
+ORD-10075,2024-03-16,CUST-245,Europe,Furniture,Filing Cabinet,5,630.42,0.1,3152.1,946.11
+ORD-10076,2024-03-17,CUST-267,North America,Office Supplies,Dry Erase Board,10,713.86,0.2,7138.6,2898.75
+ORD-10077,2024-03-18,CUST-235,Europe,Furniture,Ergonomic Mesh Chair,2,82.93,0.1,165.86,24.55
+ORD-10078,2024-03-19,CUST-144,North America,Apparel,Tech Fleece Hoodie,22,693.69,0.0,15261.18,6601.86
+ORD-10079,2024-03-20,CUST-189,Europe,Apparel,Rainproof Windbreaker,19,663.92,0.1,12614.48,3838.25
+ORD-10080,2024-03-21,CUST-247,Europe,Office Supplies,Heavy-Duty Stapler,3,226.82,0.05,680.46,172.64
+ORD-10081,2024-03-22,CUST-289,North America,Apparel,Rainproof Windbreaker,9,636.42,0.15,5727.78,1974.61
+ORD-10082,2024-03-23,CUST-233,Latin America,Electronics,Smart 4K Monitor,17,84.21,0.2,1431.57,421.4
+ORD-10083,2024-03-24,CUST-263,North America,Furniture,Executive Bookshelf,13,51.04,0.2,663.52,274.75
+ORD-10084,2024-03-25,CUST-216,Latin America,Office Supplies,Heavy-Duty Stapler,18,153.79,0.0,2768.22,530.24
+ORD-10085,2024-03-26,CUST-115,Asia Pacific,Furniture,Standing Desk Pro,16,630.48,0.05,10087.68,4257.34
+ORD-10086,2024-03-27,CUST-263,Latin America,Apparel,Performance Polo,24,532.81,0.15,12787.44,2705.0
+ORD-10087,2024-03-28,CUST-291,Europe,Furniture,Executive Bookshelf,18,237.06,0.15,4267.08,1019.46
+ORD-10088,2024-03-29,CUST-256,Asia Pacific,Office Supplies,Gel Ink Pens 12-Pack,17,248.6,0.2,4226.2,1080.63
+ORD-10089,2024-03-30,CUST-293,Asia Pacific,Electronics,Wireless Noise-Canceling Headphones,6,808.08,0.0,4848.48,1742.97
+ORD-10090,2024-03-31,CUST-217,Europe,Furniture,Executive Bookshelf,18,475.58,0.0,8560.44,1492.9
+ORD-10091,2024-04-01,CUST-185,Latin America,Electronics,Wireless Noise-Canceling Headphones,15,140.6,0.0,2109.0,666.58
+ORD-10092,2024-04-02,CUST-248,North America,Office Supplies,Heavy-Duty Stapler,13,68.03,0.0,884.39,116.87
+ORD-10093,2024-04-03,CUST-280,Europe,Apparel,Running Shoes,17,461.18,0.1,7840.06,2880.99
+ORD-10094,2024-04-04,CUST-177,North America,Office Supplies,Laser Paper Ream,5,647.16,0.2,3235.8,791.77
+ORD-10095,2024-04-05,CUST-212,North America,Electronics,Wireless Noise-Canceling Headphones,19,244.4,0.0,4643.6,874.79
+ORD-10096,2024-04-06,CUST-222,Europe,Apparel,Rainproof Windbreaker,8,33.52,0.1,268.16,76.26
+ORD-10097,2024-04-07,CUST-156,North America,Furniture,Executive Bookshelf,22,823.26,0.1,18111.72,2701.81
+ORD-10098,2024-04-08,CUST-174,Asia Pacific,Electronics,USB-C Docking Station,15,366.15,0.05,5492.25,2081.24
+ORD-10099,2024-04-09,CUST-278,Europe,Office Supplies,Heavy-Duty Stapler,2,307.74,0.1,615.48,193.67
+ORD-10100,2024-04-10,CUST-150,Latin America,Office Supplies,Gel Ink Pens 12-Pack,6,391.51,0.05,2349.06,987.68
+ORD-10101,2024-04-11,CUST-183,North America,Electronics,UltraBook Pro,4,398.55,0.0,1594.2,634.32
+ORD-10102,2024-04-12,CUST-142,Europe,Apparel,Tech Fleece Hoodie,6,426.34,0.1,2558.04,584.48
+ORD-10103,2024-04-13,CUST-217,Asia Pacific,Apparel,Running Shoes,15,122.61,0.1,1839.15,298.41
+ORD-10104,2024-04-14,CUST-254,Latin America,Apparel,Rainproof Windbreaker,8,596.58,0.1,4772.64,1221.07
+ORD-10105,2024-04-15,CUST-269,Europe,Electronics,USB-C Docking Station,19,49.13,0.15,933.47,164.06
+ORD-10106,2024-04-16,CUST-145,North America,Electronics,Wireless Noise-Canceling Headphones,6,115.73,0.05,694.38,188.91
+ORD-10107,2024-04-17,CUST-155,Europe,Furniture,Ergonomic Mesh Chair,13,283.52,0.0,3685.76,554.54
+ORD-10108,2024-04-18,CUST-107,Asia Pacific,Furniture,Filing Cabinet,16,66.0,0.0,1056.0,223.21
+ORD-10109,2024-04-19,CUST-127,North America,Electronics,Smart 4K Monitor,20,189.81,0.05,3796.2,919.65
+ORD-10110,2024-04-20,CUST-106,Latin America,Office Supplies,Gel Ink Pens 12-Pack,2,639.14,0.1,1278.28,168.87
+ORD-10111,2024-04-21,CUST-137,Asia Pacific,Office Supplies,Heavy-Duty Stapler,14,640.93,0.05,8973.02,1166.99
+ORD-10112,2024-04-22,CUST-116,Asia Pacific,Office Supplies,Heavy-Duty Stapler,23,330.03,0.0,7590.69,961.16
+ORD-10113,2024-04-23,CUST-167,Europe,Office Supplies,Gel Ink Pens 12-Pack,12,209.74,0.0,2516.88,586.85
+ORD-10114,2024-04-24,CUST-210,North America,Furniture,Filing Cabinet,13,415.45,0.05,5400.85,1689.31
+ORD-10115,2024-04-25,CUST-125,North America,Apparel,Rainproof Windbreaker,12,121.53,0.15,1458.36,311.57
+ORD-10116,2024-04-26,CUST-132,Asia Pacific,Apparel,Performance Polo,24,431.04,0.0,10344.96,2369.15
+ORD-10117,2024-04-27,CUST-289,North America,Electronics,Wireless Noise-Canceling Headphones,6,320.07,0.1,1920.42,539.59
+ORD-10118,2024-04-28,CUST-130,Asia Pacific,Furniture,Standing Desk Pro,24,763.8,0.1,18331.2,2685.1
+ORD-10119,2024-04-29,CUST-174,Latin America,Apparel,Tech Fleece Hoodie,24,108.55,0.15,2605.2,654.67
+ORD-10120,2024-04-30,CUST-161,Europe,Apparel,Running Shoes,22,230.35,0.1,5067.7,893.91
+ORD-10121,2024-05-01,CUST-232,Asia Pacific,Electronics,Wireless Noise-Canceling Headphones,11,492.3,0.15,5415.3,1150.17
+ORD-10122,2024-05-02,CUST-239,Europe,Furniture,Standing Desk Pro,4,370.24,0.0,1480.96,425.79
+ORD-10123,2024-05-03,CUST-199,Europe,Office Supplies,Laser Paper Ream,14,256.01,0.1,3584.14,1117.57
+ORD-10124,2024-05-04,CUST-250,Asia Pacific,Electronics,Smart 4K Monitor,1,323.31,0.2,323.31,87.26
+ORD-10125,2024-05-05,CUST-172,Europe,Furniture,Executive Bookshelf,13,586.62,0.2,7626.06,1136.26
+ORD-10126,2024-05-06,CUST-168,Asia Pacific,Electronics,UltraBook Pro,15,408.77,0.0,6131.55,1569.11
+ORD-10127,2024-05-07,CUST-261,Latin America,Furniture,Executive Bookshelf,18,118.79,0.0,2138.22,772.3
+ORD-10128,2024-05-08,CUST-171,Asia Pacific,Apparel,Running Shoes,1,633.84,0.2,633.84,196.22
+ORD-10129,2024-05-09,CUST-104,North America,Office Supplies,Laser Paper Ream,14,682.61,0.2,9556.54,3748.97
+ORD-10130,2024-05-10,CUST-139,Europe,Office Supplies,Heavy-Duty Stapler,4,279.02,0.05,1116.08,350.61
+ORD-10131,2024-05-11,CUST-122,Latin America,Apparel,Running Shoes,14,766.22,0.0,10727.08,3496.53
+ORD-10132,2024-05-12,CUST-203,North America,Office Supplies,Heavy-Duty Stapler,17,766.14,0.2,13024.38,3212.91
+ORD-10133,2024-05-13,CUST-299,Asia Pacific,Apparel,Running Shoes,19,375.33,0.1,7131.27,1638.97
+ORD-10134,2024-05-14,CUST-263,Latin America,Furniture,Executive Bookshelf,15,748.66,0.1,11229.9,3183.56
+ORD-10135,2024-05-15,CUST-295,North America,Electronics,Wireless Noise-Canceling Headphones,1,605.33,0.0,605.33,228.17
+ORD-10136,2024-05-16,CUST-258,Europe,Furniture,Standing Desk Pro,5,747.1,0.2,3735.5,869.95
+ORD-10137,2024-05-17,CUST-256,North America,Office Supplies,Dry Erase Board,24,519.3,0.2,12463.2,3561.42
+ORD-10138,2024-05-18,CUST-263,Latin America,Office Supplies,Dry Erase Board,13,616.23,0.1,8010.99,2656.27
+ORD-10139,2024-05-19,CUST-145,Asia Pacific,Apparel,Performance Polo,5,705.38,0.05,3526.9,1539.47
+ORD-10140,2024-05-20,CUST-210,Europe,Office Supplies,Dry Erase Board,13,131.16,0.0,1705.08,261.32
+ORD-10141,2024-05-21,CUST-219,Asia Pacific,Apparel,Rainproof Windbreaker,12,100.35,0.2,1204.2,509.6
+ORD-10142,2024-05-22,CUST-150,Asia Pacific,Electronics,USB-C Docking Station,10,658.99,0.0,6589.9,1605.06
+ORD-10143,2024-05-23,CUST-248,Latin America,Electronics,Wireless Noise-Canceling Headphones,9,787.85,0.2,7090.65,1905.8
+ORD-10144,2024-05-24,CUST-267,Latin America,Furniture,Standing Desk Pro,22,714.3,0.1,15714.6,3608.2
+ORD-10145,2024-05-25,CUST-216,Asia Pacific,Office Supplies,Laser Paper Ream,9,636.45,0.0,5728.05,1075.96
+ORD-10146,2024-05-26,CUST-234,Asia Pacific,Furniture,Ergonomic Mesh Chair,20,463.73,0.05,9274.6,3928.28
+ORD-10147,2024-05-27,CUST-278,Europe,Furniture,Filing Cabinet,17,505.2,0.1,8588.4,1123.7
+ORD-10148,2024-05-28,CUST-276,North America,Furniture,Executive Bookshelf,7,153.2,0.0,1072.4,140.68
+ORD-10149,2024-05-29,CUST-298,Asia Pacific,Electronics,Smart 4K Monitor,22,198.78,0.0,4373.16,831.71
+ORD-10150,2024-05-30,CUST-203,North America,Electronics,USB-C Docking Station,17,480.35,0.2,8165.95,3299.11
+ORD-10151,2024-05-31,CUST-161,North America,Electronics,Smart 4K Monitor,13,346.76,0.1,4507.88,1175.84
+ORD-10152,2024-06-01,CUST-117,North America,Apparel,Performance Polo,17,45.52,0.1,773.84,213.41
+ORD-10153,2024-06-02,CUST-213,Asia Pacific,Electronics,Wireless Noise-Canceling Headphones,15,455.59,0.0,6833.85,2025.35
+ORD-10154,2024-06-03,CUST-131,Asia Pacific,Furniture,Standing Desk Pro,4,166.91,0.1,667.64,269.99
+ORD-10155,2024-06-04,CUST-131,Asia Pacific,Furniture,Standing Desk Pro,14,454.69,0.15,6365.66,2445.99
+ORD-10156,2024-06-05,CUST-171,North America,Furniture,Filing Cabinet,8,37.63,0.1,301.04,58.18
+ORD-10157,2024-06-06,CUST-134,Asia Pacific,Furniture,Ergonomic Mesh Chair,5,164.08,0.05,820.4,275.17
+ORD-10158,2024-06-07,CUST-264,Europe,Apparel,Rainproof Windbreaker,24,688.72,0.15,16529.28,7234.44
+ORD-10159,2024-06-08,CUST-250,Europe,Furniture,Ergonomic Mesh Chair,23,763.44,0.0,17559.12,2182.43
+ORD-10160,2024-06-09,CUST-228,Latin America,Electronics,Smart 4K Monitor,19,501.84,0.05,9534.96,2470.22
+ORD-10161,2024-06-10,CUST-119,Latin America,Office Supplies,Laser Paper Ream,11,231.62,0.15,2547.82,624.98
+ORD-10162,2024-06-11,CUST-185,Europe,Electronics,UltraBook Pro,9,379.17,0.15,3412.53,741.11
+ORD-10163,2024-06-12,CUST-213,North America,Apparel,Rainproof Windbreaker,10,487.42,0.0,4874.2,2169.85
+ORD-10164,2024-06-13,CUST-121,Europe,Office Supplies,Laser Paper Ream,9,467.26,0.0,4205.34,1383.76
+ORD-10165,2024-06-14,CUST-227,Latin America,Office Supplies,Gel Ink Pens 12-Pack,13,592.17,0.05,7698.21,2659.35
+ORD-10166,2024-06-15,CUST-221,Latin America,Electronics,Wireless Noise-Canceling Headphones,9,243.84,0.0,2194.56,664.69
+ORD-10167,2024-06-16,CUST-267,North America,Apparel,Running Shoes,10,131.92,0.1,1319.2,273.1
+ORD-10168,2024-06-17,CUST-289,North America,Furniture,Executive Bookshelf,21,161.44,0.05,3390.24,1429.85
+ORD-10169,2024-06-18,CUST-280,Latin America,Furniture,Standing Desk Pro,2,153.85,0.1,307.7,111.86
+ORD-10170,2024-06-19,CUST-212,Europe,Apparel,Running Shoes,21,713.96,0.15,14993.16,3962.3
+ORD-10171,2024-06-20,CUST-155,Latin America,Office Supplies,Heavy-Duty Stapler,3,807.67,0.2,2423.01,607.92
+ORD-10172,2024-06-21,CUST-180,Latin America,Electronics,Wireless Noise-Canceling Headphones,15,233.99,0.1,3509.85,1110.43
+ORD-10173,2024-06-22,CUST-172,North America,Furniture,Filing Cabinet,11,294.09,0.2,3234.99,1211.18
+ORD-10174,2024-06-23,CUST-124,North America,Electronics,USB-C Docking Station,1,428.74,0.05,428.74,148.85
+ORD-10175,2024-06-24,CUST-111,Asia Pacific,Office Supplies,Heavy-Duty Stapler,18,682.51,0.05,12285.18,4290.6
+ORD-10176,2024-06-25,CUST-146,Latin America,Office Supplies,Laser Paper Ream,17,129.24,0.0,2197.08,952.61
+ORD-10177,2024-06-26,CUST-217,Latin America,Apparel,Performance Polo,24,648.26,0.0,15558.24,5147.5
+ORD-10178,2024-06-27,CUST-208,Latin America,Apparel,Performance Polo,18,423.67,0.05,7626.06,1471.82
+ORD-10179,2024-06-28,CUST-185,Latin America,Furniture,Filing Cabinet,10,506.2,0.05,5062.0,2276.82
+ORD-10180,2024-06-29,CUST-158,Europe,Furniture,Filing Cabinet,15,597.35,0.05,8960.25,1954.46
+ORD-10181,2024-06-30,CUST-202,Europe,Office Supplies,Laser Paper Ream,20,720.2,0.05,14404.0,3245.27
+ORD-10182,2024-07-01,CUST-230,Asia Pacific,Electronics,Wireless Noise-Canceling Headphones,24,207.06,0.05,4969.44,794.05
+ORD-10183,2024-07-02,CUST-103,Latin America,Electronics,Smart 4K Monitor,23,352.75,0.0,8113.25,2506.19
+ORD-10184,2024-07-03,CUST-207,North America,Electronics,Wireless Noise-Canceling Headphones,13,537.62,0.05,6989.06,2882.1
+ORD-10185,2024-07-04,CUST-240,Asia Pacific,Furniture,Standing Desk Pro,3,741.53,0.2,2224.59,282.56
+ORD-10186,2024-07-05,CUST-289,Latin America,Furniture,Executive Bookshelf,3,73.47,0.2,220.41,27.14
+ORD-10187,2024-07-06,CUST-220,Europe,Electronics,UltraBook Pro,21,415.62,0.15,8728.02,2720.09
+ORD-10188,2024-07-07,CUST-102,North America,Furniture,Standing Desk Pro,7,451.3,0.0,3159.1,1142.49
+ORD-10189,2024-07-08,CUST-275,Latin America,Electronics,Wireless Noise-Canceling Headphones,18,262.42,0.0,4723.56,930.97
+ORD-10190,2024-07-09,CUST-239,Europe,Electronics,UltraBook Pro,15,372.19,0.15,5582.85,1378.0
+ORD-10191,2024-07-10,CUST-161,North America,Office Supplies,Gel Ink Pens 12-Pack,5,89.66,0.1,448.3,115.57
+ORD-10192,2024-07-11,CUST-192,North America,Electronics,Wireless Noise-Canceling Headphones,7,842.63,0.15,5898.41,1158.75
+ORD-10193,2024-07-12,CUST-156,North America,Office Supplies,Gel Ink Pens 12-Pack,19,443.09,0.05,8418.71,1651.09
+ORD-10194,2024-07-13,CUST-108,North America,Furniture,Ergonomic Mesh Chair,3,704.88,0.0,2114.64,812.56
+ORD-10195,2024-07-14,CUST-181,Europe,Office Supplies,Dry Erase Board,17,160.2,0.05,2723.4,682.92
+ORD-10196,2024-07-15,CUST-188,Latin America,Furniture,Ergonomic Mesh Chair,3,696.22,0.2,2088.66,405.34
+ORD-10197,2024-07-16,CUST-222,Europe,Electronics,USB-C Docking Station,5,91.39,0.1,456.95,187.15
+ORD-10198,2024-07-17,CUST-139,North America,Apparel,Tech Fleece Hoodie,3,812.97,0.0,2438.91,986.54
+ORD-10199,2024-07-18,CUST-232,Asia Pacific,Electronics,UltraBook Pro,2,356.06,0.1,712.12,173.04
+ORD-10200,2024-07-19,CUST-296,Europe,Apparel,Performance Polo,6,818.37,0.15,4910.22,766.61
+ORD-10201,2024-07-20,CUST-285,Europe,Electronics,UltraBook Pro,8,752.23,0.1,6017.84,1747.02
+ORD-10202,2024-07-21,CUST-105,Latin America,Office Supplies,Dry Erase Board,2,469.06,0.0,938.12,380.2
+ORD-10203,2024-07-22,CUST-112,Latin America,Apparel,Running Shoes,8,219.81,0.0,1758.48,302.32
+ORD-10204,2024-07-23,CUST-106,North America,Office Supplies,Laser Paper Ream,21,582.92,0.15,12241.32,3967.92
+ORD-10205,2024-07-24,CUST-280,North America,Electronics,Smart 4K Monitor,19,749.02,0.1,14231.38,1731.93
+ORD-10206,2024-07-25,CUST-111,Asia Pacific,Furniture,Filing Cabinet,18,698.0,0.2,12564.0,4957.81
+ORD-10207,2024-07-26,CUST-203,Latin America,Office Supplies,Gel Ink Pens 12-Pack,13,530.13,0.0,6891.69,3058.47
+ORD-10208,2024-07-27,CUST-257,Latin America,Office Supplies,Gel Ink Pens 12-Pack,24,698.6,0.1,16766.4,2722.66
+ORD-10209,2024-07-28,CUST-121,North America,Office Supplies,Gel Ink Pens 12-Pack,2,300.46,0.2,600.92,197.56
+ORD-10210,2024-07-29,CUST-111,Latin America,Apparel,Rainproof Windbreaker,4,71.64,0.0,286.56,62.85
+ORD-10211,2024-07-30,CUST-149,Europe,Furniture,Ergonomic Mesh Chair,22,303.81,0.1,6683.82,2171.59
+ORD-10212,2024-07-31,CUST-106,Asia Pacific,Furniture,Executive Bookshelf,12,640.96,0.2,7691.52,1253.17
+ORD-10213,2024-08-01,CUST-157,North America,Electronics,Smart 4K Monitor,6,325.48,0.1,1952.88,762.01
+ORD-10214,2024-08-02,CUST-240,Europe,Office Supplies,Gel Ink Pens 12-Pack,14,406.23,0.1,5687.22,2454.72
+ORD-10215,2024-08-03,CUST-274,Asia Pacific,Electronics,Smart 4K Monitor,23,704.64,0.05,16206.72,3540.58
+ORD-10216,2024-08-04,CUST-283,Europe,Furniture,Executive Bookshelf,11,243.17,0.15,2674.87,1160.32
+ORD-10217,2024-08-05,CUST-284,North America,Apparel,Tech Fleece Hoodie,15,365.47,0.1,5482.05,1812.99
+ORD-10218,2024-08-06,CUST-288,Asia Pacific,Electronics,Smart 4K Monitor,1,282.82,0.05,282.82,101.55
+ORD-10219,2024-08-07,CUST-171,North America,Office Supplies,Dry Erase Board,24,322.72,0.1,7745.28,3138.68
+ORD-10220,2024-08-08,CUST-273,North America,Apparel,Performance Polo,17,91.12,0.1,1549.04,264.43
+ORD-10221,2024-08-09,CUST-221,Asia Pacific,Furniture,Executive Bookshelf,3,680.33,0.15,2040.99,443.05
+ORD-10222,2024-08-10,CUST-225,Europe,Office Supplies,Dry Erase Board,15,417.07,0.0,6256.05,992.91
+ORD-10223,2024-08-11,CUST-216,Latin America,Apparel,Rainproof Windbreaker,9,182.44,0.2,1641.96,463.4
+ORD-10224,2024-08-12,CUST-117,Latin America,Furniture,Executive Bookshelf,11,836.93,0.2,9206.23,1559.18
+ORD-10225,2024-08-13,CUST-144,Europe,Furniture,Executive Bookshelf,14,828.87,0.1,11604.18,4156.88
+ORD-10226,2024-08-14,CUST-187,Latin America,Electronics,UltraBook Pro,6,773.03,0.1,4638.18,1665.17
+ORD-10227,2024-08-15,CUST-247,Latin America,Electronics,UltraBook Pro,14,133.98,0.15,1875.72,533.89
+ORD-10228,2024-08-16,CUST-257,Latin America,Electronics,Wireless Noise-Canceling Headphones,18,287.6,0.0,5176.8,1505.65
+ORD-10229,2024-08-17,CUST-273,Latin America,Electronics,UltraBook Pro,22,283.95,0.05,6246.9,2764.65
+ORD-10230,2024-08-18,CUST-160,Asia Pacific,Furniture,Standing Desk Pro,2,49.39,0.1,98.78,33.71
+ORD-10231,2024-08-19,CUST-213,Europe,Office Supplies,Heavy-Duty Stapler,9,796.74,0.0,7170.66,983.46
+ORD-10232,2024-08-20,CUST-226,Latin America,Apparel,Rainproof Windbreaker,18,537.13,0.1,9668.34,3659.75
+ORD-10233,2024-08-21,CUST-226,Latin America,Office Supplies,Heavy-Duty Stapler,16,472.24,0.05,7555.84,2944.57
+ORD-10234,2024-08-22,CUST-186,North America,Office Supplies,Heavy-Duty Stapler,10,381.24,0.15,3812.4,1369.39
+ORD-10235,2024-08-23,CUST-272,North America,Apparel,Tech Fleece Hoodie,13,529.14,0.15,6878.82,1572.33
+ORD-10236,2024-08-24,CUST-297,Asia Pacific,Apparel,Tech Fleece Hoodie,21,565.02,0.05,11865.42,3374.58
+ORD-10237,2024-08-25,CUST-255,Europe,Furniture,Filing Cabinet,5,846.94,0.1,4234.7,1870.39
+ORD-10238,2024-08-26,CUST-148,Asia Pacific,Furniture,Filing Cabinet,22,40.59,0.15,892.98,183.09
+ORD-10239,2024-08-27,CUST-225,Asia Pacific,Furniture,Ergonomic Mesh Chair,24,370.29,0.15,8886.96,2080.96
+ORD-10240,2024-08-28,CUST-216,Latin America,Apparel,Rainproof Windbreaker,18,738.97,0.15,13301.46,4136.26
+ORD-10241,2024-08-29,CUST-214,Latin America,Furniture,Executive Bookshelf,2,514.1,0.05,1028.2,392.44
+ORD-10242,2024-08-30,CUST-242,North America,Furniture,Standing Desk Pro,12,335.51,0.2,4026.12,1102.02
+ORD-10243,2024-08-31,CUST-271,Europe,Electronics,Smart 4K Monitor,8,353.43,0.05,2827.44,900.86
+ORD-10244,2024-09-01,CUST-161,Europe,Furniture,Standing Desk Pro,23,359.88,0.0,8277.24,1182.1
+ORD-10245,2024-09-02,CUST-229,North America,Furniture,Executive Bookshelf,15,510.09,0.15,7651.35,2381.15
+ORD-10246,2024-09-03,CUST-267,North America,Office Supplies,Gel Ink Pens 12-Pack,2,731.42,0.0,1462.84,179.9
+ORD-10247,2024-09-04,CUST-294,Latin America,Apparel,Rainproof Windbreaker,13,212.92,0.05,2767.96,546.51
+ORD-10248,2024-09-05,CUST-100,Latin America,Furniture,Standing Desk Pro,10,389.73,0.0,3897.3,1328.59
+ORD-10249,2024-09-06,CUST-127,Latin America,Electronics,USB-C Docking Station,11,807.07,0.15,8877.77,1805.15
+ORD-10250,2024-09-07,CUST-219,North America,Electronics,Smart 4K Monitor,15,569.28,0.0,8539.2,2362.18
+ORD-10251,2024-09-08,CUST-247,Latin America,Apparel,Rainproof Windbreaker,15,740.01,0.2,11100.15,2086.02
+ORD-10252,2024-09-09,CUST-100,Europe,Furniture,Standing Desk Pro,9,458.53,0.2,4126.77,1770.71
+ORD-10253,2024-09-10,CUST-278,Europe,Office Supplies,Heavy-Duty Stapler,5,794.79,0.0,3973.95,891.48
+ORD-10254,2024-09-11,CUST-225,Europe,Furniture,Executive Bookshelf,20,838.84,0.1,16776.8,7356.45
+ORD-10255,2024-09-12,CUST-250,Europe,Furniture,Ergonomic Mesh Chair,7,394.71,0.05,2762.97,801.67
+ORD-10256,2024-09-13,CUST-223,Latin America,Apparel,Performance Polo,23,40.03,0.05,920.69,204.04
+ORD-10257,2024-09-14,CUST-185,Europe,Office Supplies,Dry Erase Board,21,93.41,0.2,1961.61,670.79
+ORD-10258,2024-09-15,CUST-244,North America,Office Supplies,Gel Ink Pens 12-Pack,23,832.16,0.05,19139.68,4660.86
+ORD-10259,2024-09-16,CUST-145,Asia Pacific,Furniture,Executive Bookshelf,8,656.71,0.0,5253.68,826.54
+ORD-10260,2024-09-17,CUST-204,North America,Apparel,Tech Fleece Hoodie,19,800.63,0.2,15211.97,5976.13
+ORD-10261,2024-09-18,CUST-260,Latin America,Furniture,Standing Desk Pro,2,849.51,0.0,1699.02,230.91
+ORD-10262,2024-09-19,CUST-167,Latin America,Electronics,UltraBook Pro,13,668.29,0.0,8687.77,2668.15
+ORD-10263,2024-09-20,CUST-181,Europe,Furniture,Ergonomic Mesh Chair,14,787.94,0.05,11031.16,2918.81
+ORD-10264,2024-09-21,CUST-242,Asia Pacific,Electronics,UltraBook Pro,19,740.53,0.0,14070.07,3432.7
+ORD-10265,2024-09-22,CUST-260,Europe,Electronics,USB-C Docking Station,7,485.47,0.2,3398.29,834.41
+ORD-10266,2024-09-23,CUST-299,North America,Electronics,USB-C Docking Station,3,204.77,0.1,614.31,88.56
+ORD-10267,2024-09-24,CUST-171,Europe,Furniture,Standing Desk Pro,2,402.02,0.05,804.04,197.25
+ORD-10268,2024-09-25,CUST-147,Europe,Apparel,Performance Polo,21,694.49,0.2,14584.29,2274.32
+ORD-10269,2024-09-26,CUST-207,Latin America,Electronics,Smart 4K Monitor,4,522.6,0.05,2090.4,778.49
+ORD-10270,2024-09-27,CUST-223,North America,Office Supplies,Heavy-Duty Stapler,21,178.47,0.2,3747.87,459.1
+ORD-10271,2024-09-28,CUST-118,Latin America,Office Supplies,Laser Paper Ream,11,332.36,0.2,3655.96,676.58
+ORD-10272,2024-09-29,CUST-256,North America,Furniture,Standing Desk Pro,4,229.41,0.1,917.64,196.38
+ORD-10273,2024-09-30,CUST-101,Asia Pacific,Office Supplies,Dry Erase Board,8,274.94,0.05,2199.52,706.95
+ORD-10274,2024-10-01,CUST-258,Latin America,Electronics,UltraBook Pro,11,117.89,0.2,1296.79,523.39
+ORD-10275,2024-10-02,CUST-183,Latin America,Office Supplies,Heavy-Duty Stapler,17,488.71,0.15,8308.07,1700.38
+ORD-10276,2024-10-03,CUST-146,Asia Pacific,Apparel,Performance Polo,22,474.44,0.05,10437.68,1402.05
+ORD-10277,2024-10-04,CUST-125,Asia Pacific,Office Supplies,Laser Paper Ream,22,699.02,0.0,15378.44,6332.66
+ORD-10278,2024-10-05,CUST-253,Europe,Electronics,Smart 4K Monitor,24,358.21,0.0,8597.04,3414.35
+ORD-10279,2024-10-06,CUST-188,Latin America,Office Supplies,Laser Paper Ream,18,626.18,0.05,11271.24,4518.5
+ORD-10280,2024-10-07,CUST-207,Latin America,Furniture,Filing Cabinet,10,392.23,0.0,3922.3,1229.96
+ORD-10281,2024-10-08,CUST-298,Asia Pacific,Furniture,Ergonomic Mesh Chair,21,94.92,0.1,1993.32,254.75
+ORD-10282,2024-10-09,CUST-101,Europe,Apparel,Running Shoes,9,341.41,0.0,3072.69,971.51
+ORD-10283,2024-10-10,CUST-266,Asia Pacific,Apparel,Running Shoes,21,579.33,0.2,12165.93,3237.31
+ORD-10284,2024-10-11,CUST-201,Asia Pacific,Electronics,UltraBook Pro,7,299.81,0.15,2098.67,818.85
+ORD-10285,2024-10-12,CUST-263,Asia Pacific,Furniture,Executive Bookshelf,13,81.32,0.0,1057.16,156.74
+ORD-10286,2024-10-13,CUST-112,Latin America,Office Supplies,Laser Paper Ream,1,204.26,0.15,204.26,48.44
+ORD-10287,2024-10-14,CUST-166,Europe,Electronics,USB-C Docking Station,5,73.39,0.05,366.95,121.55
+ORD-10288,2024-10-15,CUST-101,North America,Furniture,Executive Bookshelf,3,173.92,0.15,521.76,71.62
+ORD-10289,2024-10-16,CUST-285,Asia Pacific,Furniture,Ergonomic Mesh Chair,2,387.7,0.15,775.4,178.4
+ORD-10290,2024-10-17,CUST-154,North America,Apparel,Tech Fleece Hoodie,15,182.78,0.0,2741.7,813.8
+ORD-10291,2024-10-18,CUST-122,North America,Apparel,Rainproof Windbreaker,16,570.2,0.2,9123.2,3489.61
+ORD-10292,2024-10-19,CUST-164,Latin America,Apparel,Running Shoes,22,843.72,0.15,18561.84,7905.68
+ORD-10293,2024-10-20,CUST-115,North America,Electronics,Wireless Noise-Canceling Headphones,20,535.69,0.0,10713.8,1600.76
+ORD-10294,2024-10-21,CUST-165,Latin America,Apparel,Performance Polo,2,67.7,0.05,135.4,21.5
+ORD-10295,2024-10-22,CUST-295,Europe,Electronics,UltraBook Pro,9,440.62,0.05,3965.58,1555.87
+ORD-10296,2024-10-23,CUST-200,Europe,Furniture,Filing Cabinet,3,671.54,0.15,2014.62,623.75
+ORD-10297,2024-10-24,CUST-134,Latin America,Apparel,Performance Polo,15,346.64,0.2,5199.6,1550.06
+ORD-10298,2024-10-25,CUST-113,Europe,Furniture,Executive Bookshelf,14,687.95,0.15,9631.3,3666.73
+ORD-10299,2024-10-26,CUST-119,North America,Electronics,Smart 4K Monitor,3,159.89,0.05,479.67,167.56
+ORD-10300,2024-10-27,CUST-194,Europe,Furniture,Executive Bookshelf,2,125.66,0.15,251.32,101.65
+ORD-10301,2024-10-28,CUST-268,Europe,Furniture,Ergonomic Mesh Chair,16,653.62,0.1,10457.92,1858.34
+ORD-10302,2024-10-29,CUST-124,North America,Furniture,Ergonomic Mesh Chair,21,116.67,0.15,2450.07,680.67
+ORD-10303,2024-10-30,CUST-130,North America,Office Supplies,Dry Erase Board,12,821.46,0.2,9857.52,2589.81
+ORD-10304,2024-10-31,CUST-159,Europe,Furniture,Executive Bookshelf,6,15.28,0.05,91.68,11.54
+ORD-10305,2024-11-01,CUST-229,Asia Pacific,Office Supplies,Heavy-Duty Stapler,19,486.31,0.0,9239.89,1693.56
+ORD-10306,2024-11-02,CUST-198,Europe,Furniture,Filing Cabinet,24,263.29,0.0,6318.96,1655.64
+ORD-10307,2024-11-03,CUST-196,Latin America,Electronics,UltraBook Pro,14,99.37,0.15,1391.18,484.71
+ORD-10308,2024-11-04,CUST-151,Asia Pacific,Apparel,Rainproof Windbreaker,8,694.67,0.15,5557.36,1795.15
+ORD-10309,2024-11-05,CUST-106,Europe,Apparel,Rainproof Windbreaker,7,619.81,0.2,4338.67,1654.73
+ORD-10310,2024-11-06,CUST-282,Europe,Office Supplies,Dry Erase Board,14,162.7,0.2,2277.8,564.29
+ORD-10311,2024-11-07,CUST-157,Asia Pacific,Furniture,Standing Desk Pro,21,31.03,0.05,651.63,134.07
+ORD-10312,2024-11-08,CUST-280,North America,Apparel,Running Shoes,1,285.12,0.2,285.12,112.71
+ORD-10313,2024-11-09,CUST-290,North America,Furniture,Ergonomic Mesh Chair,4,325.13,0.1,1300.52,270.16
+ORD-10314,2024-11-10,CUST-151,Latin America,Electronics,USB-C Docking Station,23,139.61,0.05,3211.03,520.11
+ORD-10315,2024-11-11,CUST-265,Europe,Apparel,Rainproof Windbreaker,8,691.92,0.2,5535.36,1785.97
+ORD-10316,2024-11-12,CUST-268,Europe,Furniture,Ergonomic Mesh Chair,13,126.18,0.0,1640.34,252.14
+ORD-10317,2024-11-13,CUST-287,Latin America,Electronics,Wireless Noise-Canceling Headphones,16,227.65,0.05,3642.4,1447.81
+ORD-10318,2024-11-14,CUST-178,Latin America,Apparel,Tech Fleece Hoodie,11,428.7,0.0,4715.7,1167.11
+ORD-10319,2024-11-15,CUST-292,Asia Pacific,Electronics,USB-C Docking Station,24,751.85,0.15,18044.4,2794.7
+ORD-10320,2024-11-16,CUST-208,Latin America,Office Supplies,Laser Paper Ream,13,46.75,0.0,607.75,222.59
+ORD-10321,2024-11-17,CUST-258,Asia Pacific,Office Supplies,Dry Erase Board,24,44.7,0.05,1072.8,308.79
+ORD-10322,2024-11-18,CUST-150,Asia Pacific,Furniture,Executive Bookshelf,20,661.84,0.15,13236.8,4477.38
+ORD-10323,2024-11-19,CUST-137,North America,Office Supplies,Gel Ink Pens 12-Pack,5,566.35,0.05,2831.75,1054.1
+ORD-10324,2024-11-20,CUST-172,Latin America,Office Supplies,Dry Erase Board,17,261.7,0.0,4448.9,1663.19
+ORD-10325,2024-11-21,CUST-268,Europe,Furniture,Filing Cabinet,3,116.36,0.0,349.08,112.74
+ORD-10326,2024-11-22,CUST-101,Asia Pacific,Electronics,Wireless Noise-Canceling Headphones,18,284.05,0.1,5112.9,824.85
+ORD-10327,2024-11-23,CUST-109,North America,Furniture,Ergonomic Mesh Chair,16,692.83,0.1,11085.28,3731.73
+ORD-10328,2024-11-24,CUST-177,Latin America,Office Supplies,Laser Paper Ream,18,202.55,0.1,3645.9,885.28
+ORD-10329,2024-11-25,CUST-271,North America,Apparel,Performance Polo,18,802.47,0.2,14444.46,2880.64
+ORD-10330,2024-11-26,CUST-111,Europe,Apparel,Running Shoes,17,554.25,0.0,9422.25,2019.65
+ORD-10331,2024-11-27,CUST-185,Europe,Electronics,Smart 4K Monitor,21,645.46,0.15,13554.66,3686.57
+ORD-10332,2024-11-28,CUST-128,North America,Furniture,Filing Cabinet,22,465.53,0.05,10241.66,3689.28
+ORD-10333,2024-11-29,CUST-121,Latin America,Electronics,Smart 4K Monitor,18,193.28,0.15,3479.04,998.25
+ORD-10334,2024-11-30,CUST-122,North America,Office Supplies,Laser Paper Ream,1,439.48,0.1,439.48,95.89
+ORD-10335,2024-12-01,CUST-285,Asia Pacific,Electronics,Wireless Noise-Canceling Headphones,12,546.3,0.05,6555.6,2433.24
+ORD-10336,2024-12-02,CUST-163,North America,Apparel,Rainproof Windbreaker,12,621.6,0.1,7459.2,3336.48
+ORD-10337,2024-12-03,CUST-254,Asia Pacific,Furniture,Standing Desk Pro,10,634.86,0.1,6348.6,2469.54
+ORD-10338,2024-12-04,CUST-189,Latin America,Furniture,Ergonomic Mesh Chair,13,464.81,0.05,6042.53,1770.3
+ORD-10339,2024-12-05,CUST-220,Latin America,Furniture,Standing Desk Pro,17,24.21,0.2,411.57,151.19
+ORD-10340,2024-12-06,CUST-200,Latin America,Apparel,Running Shoes,19,718.05,0.1,13642.95,3754.61
+ORD-10341,2024-12-07,CUST-253,Asia Pacific,Furniture,Executive Bookshelf,4,617.93,0.1,2471.72,1019.45
+ORD-10342,2024-12-08,CUST-287,North America,Electronics,Wireless Noise-Canceling Headphones,22,595.84,0.15,13108.48,1586.94
+ORD-10343,2024-12-09,CUST-179,Latin America,Electronics,UltraBook Pro,17,506.15,0.1,8604.55,2398.27
+ORD-10344,2024-12-10,CUST-246,Latin America,Furniture,Filing Cabinet,4,59.09,0.05,236.36,66.32
+ORD-10345,2024-12-11,CUST-175,Latin America,Office Supplies,Dry Erase Board,19,431.04,0.2,8189.76,1191.03
+ORD-10346,2024-12-12,CUST-193,Europe,Furniture,Standing Desk Pro,21,673.49,0.2,14143.29,4111.44
+ORD-10347,2024-12-13,CUST-146,Asia Pacific,Office Supplies,Laser Paper Ream,1,88.98,0.1,88.98,17.16
+ORD-10348,2024-12-14,CUST-247,Latin America,Office Supplies,Laser Paper Ream,22,551.54,0.15,12133.88,3142.82
+ORD-10349,2024-12-15,CUST-202,Asia Pacific,Apparel,Running Shoes,15,357.27,0.1,5359.05,2128.27
+ORD-10350,2024-12-16,CUST-102,Latin America,Electronics,Wireless Noise-Canceling Headphones,5,169.04,0.05,845.2,202.46
+ORD-10351,2024-12-17,CUST-150,North America,Electronics,Smart 4K Monitor,22,243.01,0.2,5346.22,1555.57
+ORD-10352,2024-12-18,CUST-163,Europe,Electronics,Smart 4K Monitor,3,373.76,0.2,1121.28,457.48
+ORD-10353,2024-12-19,CUST-103,North America,Electronics,USB-C Docking Station,21,397.59,0.05,8349.39,2332.65
+ORD-10354,2024-12-20,CUST-169,Asia Pacific,Furniture,Filing Cabinet,18,774.34,0.15,13938.12,5261.23
+ORD-10355,2024-12-21,CUST-135,Europe,Electronics,Wireless Noise-Canceling Headphones,12,128.02,0.0,1536.24,565.27
+ORD-10356,2024-12-22,CUST-282,Latin America,Electronics,Wireless Noise-Canceling Headphones,12,52.24,0.1,626.88,82.73
+ORD-10357,2024-12-23,CUST-169,Latin America,Apparel,Performance Polo,10,242.08,0.05,2420.8,897.15
+ORD-10358,2024-12-24,CUST-206,North America,Apparel,Tech Fleece Hoodie,4,43.07,0.05,172.28,24.24
+ORD-10359,2024-12-25,CUST-259,Latin America,Electronics,UltraBook Pro,18,358.26,0.05,6448.68,1513.01
+ORD-10360,2024-12-26,CUST-253,Latin America,Apparel,Running Shoes,24,482.74,0.05,11585.76,4972.05
+ORD-10361,2024-12-27,CUST-168,Latin America,Apparel,Rainproof Windbreaker,14,625.24,0.05,8753.36,3884.99
+ORD-10362,2024-12-28,CUST-184,Europe,Office Supplies,Heavy-Duty Stapler,5,487.05,0.0,2435.25,665.06
+ORD-10363,2024-12-29,CUST-170,North America,Apparel,Rainproof Windbreaker,9,33.4,0.05,300.6,107.5
+ORD-10364,2024-12-30,CUST-285,North America,Furniture,Filing Cabinet,17,833.73,0.15,14173.41,2764.45
+ORD-10365,2024-12-31,CUST-164,Asia Pacific,Office Supplies,Laser Paper Ream,22,473.28,0.05,10412.16,3355.39
+ORD-10366,2025-01-01,CUST-197,North America,Furniture,Ergonomic Mesh Chair,2,569.6,0.05,1139.2,217.94
+ORD-10367,2025-01-02,CUST-158,Asia Pacific,Apparel,Rainproof Windbreaker,7,470.44,0.15,3293.08,462.84
+ORD-10368,2025-01-03,CUST-119,Latin America,Furniture,Filing Cabinet,19,671.54,0.2,12759.26,2378.96
+ORD-10369,2025-01-04,CUST-178,Latin America,Furniture,Filing Cabinet,14,644.68,0.2,9025.52,1136.51
+ORD-10370,2025-01-05,CUST-127,Latin America,Furniture,Executive Bookshelf,14,214.39,0.05,3001.46,807.12
+ORD-10371,2025-01-06,CUST-196,Asia Pacific,Furniture,Ergonomic Mesh Chair,2,69.45,0.15,138.9,37.93
+ORD-10372,2025-01-07,CUST-277,Asia Pacific,Furniture,Executive Bookshelf,6,325.56,0.1,1953.36,525.57
+ORD-10373,2025-01-08,CUST-140,North America,Office Supplies,Heavy-Duty Stapler,19,178.33,0.15,3388.27,615.37
+ORD-10374,2025-01-09,CUST-141,North America,Apparel,Tech Fleece Hoodie,8,681.26,0.05,5450.08,1366.17
+ORD-10375,2025-01-10,CUST-102,Europe,Apparel,Rainproof Windbreaker,12,153.64,0.2,1843.68,594.49
+ORD-10376,2025-01-11,CUST-259,Asia Pacific,Office Supplies,Gel Ink Pens 12-Pack,8,438.39,0.2,3507.12,1113.08
+ORD-10377,2025-01-12,CUST-131,Asia Pacific,Apparel,Rainproof Windbreaker,5,382.67,0.1,1913.35,618.1
+ORD-10378,2025-01-13,CUST-218,Asia Pacific,Electronics,USB-C Docking Station,14,281.92,0.2,3946.88,1761.01
+ORD-10379,2025-01-14,CUST-158,Europe,Electronics,UltraBook Pro,13,284.71,0.05,3701.23,1661.98
+ORD-10380,2025-01-15,CUST-247,Asia Pacific,Office Supplies,Dry Erase Board,5,482.4,0.0,2412.0,709.23
+ORD-10381,2025-01-16,CUST-215,Europe,Furniture,Standing Desk Pro,5,827.84,0.0,4139.2,956.81
+ORD-10382,2025-01-17,CUST-274,Europe,Furniture,Standing Desk Pro,19,649.25,0.05,12335.75,5502.5
+ORD-10383,2025-01-18,CUST-129,North America,Apparel,Rainproof Windbreaker,21,227.36,0.15,4774.56,1863.77
+ORD-10384,2025-01-19,CUST-279,North America,Furniture,Executive Bookshelf,24,87.79,0.1,2106.96,752.81
+ORD-10385,2025-01-20,CUST-168,Asia Pacific,Furniture,Ergonomic Mesh Chair,15,174.7,0.0,2620.5,845.23
+ORD-10386,2025-01-21,CUST-115,Europe,Apparel,Running Shoes,15,227.07,0.2,3406.05,443.7
+ORD-10387,2025-01-22,CUST-247,Asia Pacific,Furniture,Standing Desk Pro,8,18.19,0.0,145.52,50.2
+ORD-10388,2025-01-23,CUST-285,Latin America,Apparel,Tech Fleece Hoodie,23,248.2,0.15,5708.6,1896.12
+ORD-10389,2025-01-24,CUST-280,Europe,Electronics,Smart 4K Monitor,15,192.56,0.2,2888.4,378.24
+ORD-10390,2025-01-25,CUST-176,Europe,Furniture,Executive Bookshelf,4,742.46,0.1,2969.84,1107.16
+ORD-10391,2025-01-26,CUST-190,Asia Pacific,Office Supplies,Gel Ink Pens 12-Pack,1,744.98,0.1,744.98,89.44
+ORD-10392,2025-01-27,CUST-246,Europe,Furniture,Executive Bookshelf,6,204.32,0.1,1225.92,301.49
+ORD-10393,2025-01-28,CUST-201,Europe,Furniture,Filing Cabinet,20,30.03,0.05,600.6,155.6
+ORD-10394,2025-01-29,CUST-127,Latin America,Office Supplies,Gel Ink Pens 12-Pack,19,827.27,0.1,15718.13,6170.83
+ORD-10395,2025-01-30,CUST-118,Asia Pacific,Apparel,Tech Fleece Hoodie,14,621.77,0.0,8704.78,1919.99
+ORD-10396,2025-01-31,CUST-129,Europe,Office Supplies,Dry Erase Board,24,602.58,0.0,14461.92,4315.88
+ORD-10397,2025-02-01,CUST-286,North America,Electronics,USB-C Docking Station,24,252.0,0.2,6048.0,2371.4
+ORD-10398,2025-02-02,CUST-204,North America,Furniture,Standing Desk Pro,4,68.85,0.05,275.4,112.77
+ORD-10399,2025-02-03,CUST-161,Europe,Electronics,Wireless Noise-Canceling Headphones,9,840.84,0.2,7567.56,2471.85
+ORD-10400,2025-02-04,CUST-248,Europe,Electronics,USB-C Docking Station,12,501.64,0.05,6019.68,2699.79
+ORD-10401,2025-02-05,CUST-288,Latin America,Electronics,USB-C Docking Station,5,515.15,0.2,2575.75,406.78
+ORD-10402,2025-02-06,CUST-186,Asia Pacific,Electronics,USB-C Docking Station,17,69.01,0.2,1173.17,510.82
+ORD-10403,2025-02-07,CUST-246,Latin America,Office Supplies,Dry Erase Board,22,377.89,0.0,8313.58,3120.75
+ORD-10404,2025-02-08,CUST-256,North America,Furniture,Executive Bookshelf,22,521.92,0.15,11482.24,3769.98
+ORD-10405,2025-02-09,CUST-272,Asia Pacific,Office Supplies,Dry Erase Board,7,124.96,0.15,874.72,172.57
+ORD-10406,2025-02-10,CUST-100,Latin America,Office Supplies,Gel Ink Pens 12-Pack,2,241.76,0.0,483.52,133.48
+ORD-10407,2025-02-11,CUST-111,Europe,Apparel,Running Shoes,6,759.39,0.2,4556.34,551.15
+ORD-10408,2025-02-12,CUST-192,Asia Pacific,Furniture,Standing Desk Pro,8,214.45,0.0,1715.6,471.76
+ORD-10409,2025-02-13,CUST-155,Asia Pacific,Electronics,UltraBook Pro,8,407.24,0.15,3257.92,872.03
+ORD-10410,2025-02-14,CUST-247,North America,Electronics,UltraBook Pro,6,728.2,0.1,4369.2,595.67
+ORD-10411,2025-02-15,CUST-206,Europe,Apparel,Tech Fleece Hoodie,7,685.16,0.05,4796.12,1480.93
+ORD-10412,2025-02-16,CUST-187,North America,Furniture,Standing Desk Pro,9,696.93,0.0,6272.37,1341.69
+ORD-10413,2025-02-17,CUST-246,Asia Pacific,Electronics,Smart 4K Monitor,7,494.94,0.1,3464.58,449.67
+ORD-10414,2025-02-18,CUST-175,Asia Pacific,Office Supplies,Laser Paper Ream,14,152.95,0.1,2141.3,532.45
+ORD-10415,2025-02-19,CUST-144,North America,Apparel,Rainproof Windbreaker,21,230.57,0.0,4841.97,1658.96
+ORD-10416,2025-02-20,CUST-274,Latin America,Furniture,Filing Cabinet,5,16.31,0.2,81.55,26.91
+ORD-10417,2025-02-21,CUST-226,Asia Pacific,Office Supplies,Laser Paper Ream,20,588.3,0.0,11766.0,1856.45
+ORD-10418,2025-02-22,CUST-175,North America,Apparel,Performance Polo,19,512.93,0.0,9745.67,2936.98
+ORD-10419,2025-02-23,CUST-293,Asia Pacific,Furniture,Filing Cabinet,9,801.34,0.0,7212.06,2456.64
+ORD-10420,2025-02-24,CUST-220,North America,Office Supplies,Heavy-Duty Stapler,10,434.3,0.0,4343.0,720.19
+ORD-10421,2025-02-25,CUST-265,Asia Pacific,Office Supplies,Dry Erase Board,20,547.63,0.2,10952.6,3992.48
+ORD-10422,2025-02-26,CUST-262,Europe,Office Supplies,Dry Erase Board,8,699.71,0.15,5597.68,1955.33
+ORD-10423,2025-02-27,CUST-226,Asia Pacific,Office Supplies,Laser Paper Ream,13,348.47,0.0,4530.11,1904.21
+ORD-10424,2025-02-28,CUST-245,Asia Pacific,Office Supplies,Laser Paper Ream,24,559.66,0.1,13431.84,5359.97
+ORD-10425,2025-03-01,CUST-207,North America,Apparel,Running Shoes,23,468.02,0.15,10764.46,4352.88
+ORD-10426,2025-03-02,CUST-147,Asia Pacific,Furniture,Executive Bookshelf,3,731.06,0.1,2193.18,926.6
+ORD-10427,2025-03-03,CUST-283,Asia Pacific,Apparel,Performance Polo,22,604.16,0.05,13291.52,4614.47
+ORD-10428,2025-03-04,CUST-118,Asia Pacific,Apparel,Tech Fleece Hoodie,4,52.39,0.15,209.56,77.84
+ORD-10429,2025-03-05,CUST-225,Latin America,Electronics,Wireless Noise-Canceling Headphones,18,546.81,0.1,9842.58,2287.41
+ORD-10430,2025-03-06,CUST-283,North America,Office Supplies,Laser Paper Ream,6,722.36,0.15,4334.16,1279.7
+ORD-10431,2025-03-07,CUST-166,North America,Apparel,Performance Polo,4,154.75,0.1,619.0,272.84
+ORD-10432,2025-03-08,CUST-150,Latin America,Office Supplies,Laser Paper Ream,14,40.85,0.05,571.9,141.85
+ORD-10433,2025-03-09,CUST-224,Asia Pacific,Furniture,Standing Desk Pro,15,422.36,0.05,6335.4,1032.14
+ORD-10434,2025-03-10,CUST-212,Latin America,Electronics,Wireless Noise-Canceling Headphones,5,410.8,0.05,2054.0,547.52
+ORD-10435,2025-03-11,CUST-168,Asia Pacific,Electronics,UltraBook Pro,15,141.57,0.15,2123.55,276.51
+ORD-10436,2025-03-12,CUST-186,North America,Electronics,UltraBook Pro,13,467.32,0.1,6075.16,2256.48
+ORD-10437,2025-03-13,CUST-184,Europe,Office Supplies,Heavy-Duty Stapler,2,231.54,0.0,463.08,85.31
+ORD-10438,2025-03-14,CUST-228,Latin America,Furniture,Filing Cabinet,21,821.96,0.1,17261.16,5248.15
+ORD-10439,2025-03-15,CUST-278,Latin America,Apparel,Running Shoes,3,140.69,0.15,422.07,164.41
+ORD-10440,2025-03-16,CUST-118,Asia Pacific,Electronics,UltraBook Pro,18,535.54,0.05,9639.72,2968.02
+ORD-10441,2025-03-17,CUST-217,North America,Electronics,Smart 4K Monitor,8,47.95,0.15,383.6,106.23
+ORD-10442,2025-03-18,CUST-248,Latin America,Office Supplies,Heavy-Duty Stapler,21,515.27,0.15,10820.67,2560.63
+ORD-10443,2025-03-19,CUST-111,Asia Pacific,Furniture,Filing Cabinet,5,678.17,0.05,3390.85,715.48
+ORD-10444,2025-03-20,CUST-195,Asia Pacific,Furniture,Ergonomic Mesh Chair,19,443.27,0.15,8422.13,1271.0
+ORD-10445,2025-03-21,CUST-291,Asia Pacific,Furniture,Filing Cabinet,4,253.63,0.1,1014.52,189.78
+ORD-10446,2025-03-22,CUST-191,Europe,Electronics,Smart 4K Monitor,17,737.76,0.05,12541.92,5564.15
+ORD-10447,2025-03-23,CUST-171,Asia Pacific,Office Supplies,Heavy-Duty Stapler,15,493.9,0.0,7408.5,3226.37
+ORD-10448,2025-03-24,CUST-162,North America,Apparel,Tech Fleece Hoodie,17,722.22,0.1,12277.74,5091.82
+ORD-10449,2025-03-25,CUST-121,Asia Pacific,Furniture,Filing Cabinet,5,441.21,0.05,2206.05,720.88
+ORD-10450,2025-03-26,CUST-293,Asia Pacific,Electronics,Wireless Noise-Canceling Headphones,3,593.26,0.2,1779.78,292.53
+ORD-10451,2025-03-27,CUST-118,Asia Pacific,Electronics,USB-C Docking Station,24,456.36,0.1,10952.64,4181.94
+ORD-10452,2025-03-28,CUST-164,Europe,Furniture,Executive Bookshelf,17,89.99,0.1,1529.83,184.75
+ORD-10453,2025-03-29,CUST-287,North America,Apparel,Tech Fleece Hoodie,1,72.64,0.2,72.64,8.85
+ORD-10454,2025-03-30,CUST-133,Asia Pacific,Apparel,Tech Fleece Hoodie,1,721.34,0.0,721.34,232.62
+ORD-10455,2025-03-31,CUST-171,Latin America,Furniture,Standing Desk Pro,4,354.93,0.1,1419.72,201.29
+ORD-10456,2025-04-01,CUST-182,Latin America,Office Supplies,Gel Ink Pens 12-Pack,13,806.32,0.2,10482.16,1508.01
+ORD-10457,2025-04-02,CUST-223,Latin America,Office Supplies,Gel Ink Pens 12-Pack,2,79.18,0.05,158.36,45.17
+ORD-10458,2025-04-03,CUST-133,Latin America,Apparel,Performance Polo,2,75.87,0.15,151.74,38.38
+ORD-10459,2025-04-04,CUST-217,Latin America,Office Supplies,Heavy-Duty Stapler,23,790.91,0.1,18190.93,4614.75
+ORD-10460,2025-04-05,CUST-112,North America,Electronics,Smart 4K Monitor,7,203.73,0.2,1426.11,472.55
+ORD-10461,2025-04-06,CUST-282,North America,Electronics,Smart 4K Monitor,19,555.93,0.0,10562.67,1695.98
+ORD-10462,2025-04-07,CUST-247,Europe,Office Supplies,Dry Erase Board,10,504.2,0.15,5042.0,1644.59
+ORD-10463,2025-04-08,CUST-158,Europe,Apparel,Performance Polo,18,611.15,0.15,11000.7,4306.08
+ORD-10464,2025-04-09,CUST-197,Europe,Office Supplies,Dry Erase Board,12,429.74,0.05,5156.88,1102.59
+ORD-10465,2025-04-10,CUST-192,North America,Office Supplies,Heavy-Duty Stapler,12,351.04,0.0,4212.48,648.33
+ORD-10466,2025-04-11,CUST-107,Latin America,Furniture,Standing Desk Pro,22,605.33,0.05,13317.26,1873.57
+ORD-10467,2025-04-12,CUST-220,North America,Electronics,Wireless Noise-Canceling Headphones,12,633.65,0.1,7603.8,1706.06
+ORD-10468,2025-04-13,CUST-181,Asia Pacific,Electronics,Smart 4K Monitor,9,718.66,0.15,6467.94,1444.97
+ORD-10469,2025-04-14,CUST-278,North America,Office Supplies,Heavy-Duty Stapler,19,774.8,0.15,14721.2,3599.55
+ORD-10470,2025-04-15,CUST-219,Europe,Electronics,UltraBook Pro,23,427.33,0.1,9828.59,2436.74
+ORD-10471,2025-04-16,CUST-260,Asia Pacific,Office Supplies,Gel Ink Pens 12-Pack,23,227.28,0.2,5227.44,2137.6
+ORD-10472,2025-04-17,CUST-120,Asia Pacific,Apparel,Rainproof Windbreaker,17,579.55,0.0,9852.35,4251.43
+ORD-10473,2025-04-18,CUST-140,Asia Pacific,Apparel,Running Shoes,12,849.55,0.15,10194.6,1575.95
+ORD-10474,2025-04-19,CUST-223,Latin America,Office Supplies,Heavy-Duty Stapler,18,544.74,0.0,9805.32,3670.7
+ORD-10475,2025-04-20,CUST-115,North America,Office Supplies,Laser Paper Ream,18,475.98,0.05,8567.64,2203.71
+ORD-10476,2025-04-21,CUST-208,Europe,Electronics,UltraBook Pro,11,624.96,0.15,6874.56,2294.35
+ORD-10477,2025-04-22,CUST-117,North America,Office Supplies,Laser Paper Ream,2,344.6,0.15,689.2,294.4
+ORD-10478,2025-04-23,CUST-199,Europe,Office Supplies,Dry Erase Board,12,58.59,0.0,703.08,242.65
+ORD-10479,2025-04-24,CUST-152,Asia Pacific,Electronics,USB-C Docking Station,3,571.83,0.05,1715.49,671.94
+ORD-10480,2025-04-25,CUST-180,North America,Apparel,Running Shoes,10,27.27,0.05,272.7,66.84
+ORD-10481,2025-04-26,CUST-111,Europe,Apparel,Performance Polo,3,426.54,0.0,1279.62,324.28
+ORD-10482,2025-04-27,CUST-164,Latin America,Furniture,Executive Bookshelf,11,747.84,0.05,8226.24,1100.23
+ORD-10483,2025-04-28,CUST-126,Latin America,Apparel,Running Shoes,16,660.39,0.05,10566.24,3085.63
+ORD-10484,2025-04-29,CUST-252,Europe,Furniture,Ergonomic Mesh Chair,15,688.97,0.2,10334.55,1650.1
+ORD-10485,2025-04-30,CUST-216,Europe,Electronics,Smart 4K Monitor,7,305.66,0.1,2139.62,519.23
+ORD-10486,2025-05-01,CUST-107,Asia Pacific,Apparel,Tech Fleece Hoodie,4,722.3,0.1,2889.2,369.2
+ORD-10487,2025-05-02,CUST-203,North America,Electronics,Smart 4K Monitor,24,397.43,0.15,9538.32,2397.38
+ORD-10488,2025-05-03,CUST-271,North America,Office Supplies,Laser Paper Ream,2,518.75,0.15,1037.5,286.58
+ORD-10489,2025-05-04,CUST-277,Europe,Furniture,Executive Bookshelf,8,802.17,0.15,6417.36,2432.9
+ORD-10490,2025-05-05,CUST-298,Latin America,Office Supplies,Heavy-Duty Stapler,22,320.34,0.15,7047.48,1369.86
+ORD-10491,2025-05-06,CUST-280,Europe,Furniture,Ergonomic Mesh Chair,10,278.15,0.2,2781.5,587.34
+ORD-10492,2025-05-07,CUST-148,Latin America,Apparel,Rainproof Windbreaker,15,151.84,0.0,2277.6,756.46
+ORD-10493,2025-05-08,CUST-273,Europe,Office Supplies,Dry Erase Board,24,620.36,0.0,14888.64,4433.96
+ORD-10494,2025-05-09,CUST-153,North America,Furniture,Standing Desk Pro,18,21.55,0.1,387.9,127.31
+ORD-10495,2025-05-10,CUST-145,Europe,Electronics,Wireless Noise-Canceling Headphones,2,216.98,0.2,433.96,123.77
+ORD-10496,2025-05-11,CUST-102,Europe,Electronics,Wireless Noise-Canceling Headphones,22,650.31,0.2,14306.82,4298.68
+ORD-10497,2025-05-12,CUST-174,North America,Furniture,Standing Desk Pro,8,189.67,0.0,1517.36,207.11
+ORD-10498,2025-05-13,CUST-147,Asia Pacific,Electronics,Wireless Noise-Canceling Headphones,12,817.12,0.1,9805.44,1813.86
+ORD-10499,2025-05-14,CUST-154,Asia Pacific,Apparel,Rainproof Windbreaker,12,231.72,0.1,2780.64,734.67
