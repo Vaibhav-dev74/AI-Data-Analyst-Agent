@@ -71,10 +71,36 @@ def health_check():
     )
 
 
-@app.get("/", tags=["Root"])
-def root():
-    return {
-        "name": "InsightIQ API",
-        "status": "operational",
-        "documentation": "/api/docs"
-    }
+import os
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+# Check for compiled frontend distribution
+frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../frontend/dist"))
+if not os.path.exists(frontend_dist):
+    frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "../frontend/dist"))
+
+if os.path.exists(frontend_dist):
+    # Mount assets directory for CSS/JS
+    assets_dir = os.path.join(frontend_dist, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+    # Catch-all route to serve React SPA index.html
+    @app.get("/{full_path:path}", include_in_schema=False)
+    async def serve_spa(full_path: str):
+        # Don't intercept API routes or health
+        if full_path.startswith("api") or full_path == "health":
+            return JSONResponse(status_code=404, content={"detail": "Not found"})
+        target_file = os.path.join(frontend_dist, full_path)
+        if os.path.isfile(target_file):
+            return FileResponse(target_file)
+        return FileResponse(os.path.join(frontend_dist, "index.html"))
+else:
+    @app.get("/", tags=["Root"])
+    def root():
+        return {
+            "name": "InsightIQ API",
+            "status": "operational",
+            "documentation": "/api/docs"
+        }

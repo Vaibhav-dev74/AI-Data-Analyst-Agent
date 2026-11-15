@@ -11,7 +11,7 @@ import {
   Activity,
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
-import axios from 'axios';
+import api from '../services/api';
 
 export const SettingsPage: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -21,7 +21,7 @@ export const SettingsPage: React.FC = () => {
   const checkHealth = async () => {
     try {
       setChecking(true);
-      const res = await axios.get('/api/health');
+      const res = await api.get('/health');
       setHealth(res.data);
     } catch (err) {
       setHealth({ status: 'unreachable' });

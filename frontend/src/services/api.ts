@@ -15,7 +15,8 @@ import {
   User,
 } from '../types';
 
-const API_BASE = '/api';
+const VITE_API_URL = (import.meta as any).env?.VITE_API_URL;
+export const API_BASE = VITE_API_URL ? `${VITE_API_URL.replace(/\/$/, '')}/api` : '/api';
 
 const api = axios.create({
   baseURL: API_BASE,
