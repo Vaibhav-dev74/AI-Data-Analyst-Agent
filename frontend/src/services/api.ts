@@ -186,7 +186,25 @@ export const reportService = {
   delete: async (id: string): Promise<void> => {
     await api.delete(`/reports/${id}`);
   },
-  downloadUrl: (id: string) => `/api/reports/${id}/download`,
+  downloadUrl: (id: string) => {
+    const token = localStorage.getItem('insightiq_token');
+    return `${API_BASE}/reports/${id}/download${token ? `?token=${encodeURIComponent(token)}` : ''}`;
+  },
+  download: async (id: string, filename: string): Promise<void> => {
+    const res = await api.get(`/reports/${id}/download`, {
+      responseType: 'blob',
+    });
+    const contentType = (res.headers['content-type'] as string) || 'application/octet-stream';
+    const blob = new Blob([res.data], { type: contentType });
+    const blobUrl = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = blobUrl;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(blobUrl);
+  },
 };
 
 export const userService = {

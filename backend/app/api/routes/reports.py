@@ -1,12 +1,14 @@
 import os
 import uuid
-from typing import List
-from fastapi import APIRouter, Depends, HTTPException, status
+from typing import List, Optional
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from fastapi.responses import FileResponse
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.dependencies import get_current_user
+from app.core.security import decode_token
 from app.models import Dataset, GeneratedReport, User, UserActivity
 from app.reports.excel_generator import ExcelReportGenerator
 from app.reports.pdf_generator import PDFReportGenerator
@@ -14,8 +16,48 @@ from app.schemas.report import ReportDetail, ReportGenerateRequest, ReportOut
 
 router = APIRouter(prefix="/reports", tags=["Executive Reports"])
 
-REPORTS_DIR = "./reports_generated"
+# Robust absolute directory resolution
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+REPORTS_DIR = os.path.abspath(os.path.join(BASE_DIR, "reports_generated"))
 os.makedirs(REPORTS_DIR, exist_ok=True)
+
+security_scheme = HTTPBearer(auto_error=False)
+
+
+def get_download_user(
+    token: Optional[str] = Query(None),
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(security_scheme),
+    db: Session = Depends(get_db)
+) -> User:
+    """
+    Validates user credentials via Authorization Bearer header OR ?token= query parameter.
+    Allows both authenticated AJAX/blob downloads and direct browser window links.
+    """
+    raw_token = credentials.credentials if credentials else token
+    if not raw_token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication token required to download report.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    payload = decode_token(raw_token)
+    if not payload or payload.get("type") != "access":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired access token.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    user_id = payload.get("sub")
+    if not user_id:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token payload.")
+
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user or not user.is_active:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User account not found or inactive.")
+
+    return user
 
 
 @router.post("/generate", response_model=ReportDetail, status_code=status.HTTP_201_CREATED)
@@ -60,7 +102,7 @@ def generate_report(
     ext = "pdf" if report_fmt == "pdf" else "xlsx"
     clean_title = "".join(c for c in req.title if c.isalnum() or c in (" ", "_", "-")).strip()
     filename = f"{clean_title.replace(' ', '_')}_{unique_id}.{ext}"
-    output_path = os.path.join(REPORTS_DIR, filename)
+    output_path = os.path.abspath(os.path.join(REPORTS_DIR, filename))
 
     try:
         if report_fmt == "pdf":
@@ -98,6 +140,7 @@ def generate_report(
         executive_summary={"findings": findings, "recommendations": recommendations}
     )
     db.add(report)
+
     db.add(UserActivity(
         user_id=current_user.id,
         action="generated_report",
@@ -129,7 +172,13 @@ def list_reports(
     out = []
     for r in reports:
         ds = db.query(Dataset).filter(Dataset.id == r.dataset_id).first()
-        file_sz = os.path.getsize(r.file_path) if os.path.exists(r.file_path) else 0
+        file_path = os.path.abspath(r.file_path)
+        if not os.path.exists(file_path):
+            alt_path = os.path.abspath(os.path.join(REPORTS_DIR, os.path.basename(r.file_path)))
+            file_sz = os.path.getsize(alt_path) if os.path.exists(alt_path) else 0
+        else:
+            file_sz = os.path.getsize(file_path)
+
         out.append(ReportOut(
             id=r.id,
             title=r.title,
@@ -145,25 +194,79 @@ def list_reports(
 @router.get("/{report_id}/download")
 def download_report(
     report_id: str,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    token: Optional[str] = Query(None),
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(security_scheme),
+    db: Session = Depends(get_db)
 ):
-    """Downloads the generated report binary file (PDF or Excel)."""
+    """
+    Downloads the generated report binary file (PDF or Excel).
+    Supports token authorization via query parameter or HTTP Bearer header.
+    Automatically regenerates missing reports if the underlying dataset is valid.
+    """
+    current_user = get_download_user(token=token, credentials=credentials, db=db)
+
     report = db.query(GeneratedReport).filter(
         GeneratedReport.id == report_id,
         GeneratedReport.user_id == current_user.id
     ).first()
 
-    if not report or not os.path.exists(report.file_path):
-        raise HTTPException(status_code=404, detail="Report file not found.")
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found or access denied.")
 
-    media_type = "application/pdf" if report.format == "pdf" else "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    download_filename = os.path.basename(report.file_path)
+    target_path = os.path.abspath(report.file_path)
+
+    # If the file doesn't exist at stored location, check standard REPORTS_DIR
+    if not os.path.exists(target_path):
+        alt_path = os.path.abspath(os.path.join(REPORTS_DIR, os.path.basename(report.file_path)))
+        if os.path.exists(alt_path):
+            target_path = alt_path
+        else:
+            # Self-healing: Regenerate the report on demand if dataset file exists
+            ds = db.query(Dataset).filter(Dataset.id == report.dataset_id).first()
+            if ds and os.path.exists(ds.file_path):
+                profile = ds.metadata_profile or {}
+                findings = report.executive_summary.get("findings", "") if report.executive_summary else ""
+                recommendations = report.executive_summary.get("recommendations", []) if report.executive_summary else []
+
+                if report.format == "pdf":
+                    PDFReportGenerator.generate(
+                        output_path=target_path,
+                        title=report.title,
+                        dataset_name=ds.name,
+                        profile=profile,
+                        summary_stats={},
+                        findings=findings,
+                        recommendations=recommendations
+                    )
+                else:
+                    ExcelReportGenerator.generate(
+                        output_path=target_path,
+                        title=report.title,
+                        dataset_name=ds.name,
+                        file_path=ds.file_path,
+                        file_type=ds.file_type,
+                        profile=profile,
+                        findings=findings,
+                        recommendations=recommendations
+                    )
+            else:
+                raise HTTPException(status_code=404, detail="Report file not found on disk.")
+
+    media_type = (
+        "application/pdf"
+        if report.format == "pdf"
+        else "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+    download_filename = os.path.basename(target_path)
 
     return FileResponse(
-        path=report.file_path,
+        path=target_path,
         media_type=media_type,
-        filename=download_filename
+        filename=download_filename,
+        headers={
+            "Content-Disposition": f'attachment; filename="{download_filename}"',
+            "Access-Control-Expose-Headers": "Content-Disposition",
+        }
     )
 
 
@@ -185,6 +288,14 @@ def delete_report(
     if os.path.exists(report.file_path):
         try:
             os.remove(report.file_path)
+        except Exception:
+            pass
+
+    # Check alt path
+    alt_path = os.path.abspath(os.path.join(REPORTS_DIR, os.path.basename(report.file_path)))
+    if os.path.exists(alt_path):
+        try:
+            os.remove(alt_path)
         except Exception:
             pass
 

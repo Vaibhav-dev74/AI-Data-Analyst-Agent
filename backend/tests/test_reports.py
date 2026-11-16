@@ -2,6 +2,8 @@ import os
 
 
 def test_pdf_and_excel_report_generation(authenticated_client):
+    token = authenticated_client.headers["Authorization"].split(" ")[1]
+
     with open("sample_datasets/sales_data.csv", "rb") as f:
         upload_res = authenticated_client.post(
             "/api/datasets/upload",
@@ -20,10 +22,20 @@ def test_pdf_and_excel_report_generation(authenticated_client):
     assert pdf_data["format"] == "pdf"
     assert pdf_data["file_size_bytes"] > 0
 
-    # Download PDF
+    # Download PDF via Bearer header
     dl_pdf = authenticated_client.get(f"/api/reports/{pdf_data['id']}/download")
     assert dl_pdf.status_code == 200
     assert dl_pdf.headers["content-type"] == "application/pdf"
+    assert len(dl_pdf.content) > 500
+
+    # Download PDF via token query param (browser direct download simulation)
+    from fastapi.testclient import TestClient
+    from app.main import app
+    unauth_client = TestClient(app)
+    dl_pdf_query = unauth_client.get(f"/api/reports/{pdf_data['id']}/download?token={token}")
+    assert dl_pdf_query.status_code == 200
+    assert dl_pdf_query.headers["content-type"] == "application/pdf"
+    assert len(dl_pdf_query.content) > 500
 
     # 2. Generate Excel
     excel_res = authenticated_client.post("/api/reports/generate", json={
