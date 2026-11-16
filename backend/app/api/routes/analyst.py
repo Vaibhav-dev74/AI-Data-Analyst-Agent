@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from app.agents.graph import run_analyst_agent
+from app.agents.prompt_generator import generate_grounded_prompts
 from app.core.database import get_db
 from app.core.dependencies import get_current_user
 from app.models import AnalysisResult, AnalysisSession, ChatMessage, Dataset, User, UserActivity
@@ -238,3 +239,27 @@ def delete_session(
     db.delete(session)
     db.commit()
     return None
+
+
+@router.get("/suggested-prompts/{dataset_id}", response_model=List[dict])
+def get_dataset_suggested_prompts(
+    dataset_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """
+    Returns dynamically synthesized analytical questions directly grounded in the
+    uploaded dataset's actual columns, metrics, and data types.
+    """
+    dataset = db.query(Dataset).filter(
+        Dataset.id == dataset_id,
+        Dataset.user_id == current_user.id
+    ).first()
+
+    if not dataset:
+        raise HTTPException(status_code=404, detail="Dataset not found or access denied.")
+
+    profile = dataset.metadata_profile or {}
+    columns_info = profile.get("columns_overview", [])
+    return generate_grounded_prompts(dataset.name, columns_info)
+

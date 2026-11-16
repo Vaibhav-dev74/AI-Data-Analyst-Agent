@@ -120,28 +120,43 @@ export const SettingsPage: React.FC = () => {
         </div>
 
         {/* Appearance & Preferences */}
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 flex items-center justify-between">
+        <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/60 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
           <div>
-            <h3 className="text-sm font-semibold text-white">Theme & UI Appearance</h3>
-            <p className="text-xs text-slate-400 mt-0.5">Toggle between enterprise Dark and Light visual themes</p>
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+              <span>Theme & UI Appearance</span>
+              <span className="rounded bg-blue-50 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-700/50 px-2 py-0.5 text-[10px] font-semibold text-blue-600 dark:text-blue-400 uppercase">
+                {theme} active
+              </span>
+            </h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+              Toggle between enterprise Dark and Light visual themes across all workspaces and dashboards.
+            </p>
           </div>
 
-          <button
-            onClick={toggleTheme}
-            className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-200 hover:bg-slate-700 transition-colors"
-          >
-            {theme === 'dark' ? (
-              <>
-                <Sun className="h-4 w-4 text-amber-400" />
-                <span>Light Mode</span>
-              </>
-            ) : (
-              <>
-                <Moon className="h-4 w-4 text-blue-400" />
-                <span>Dark Mode</span>
-              </>
-            )}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => theme !== 'light' && toggleTheme()}
+              className={`flex items-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition-all ${
+                theme === 'light'
+                  ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-xs'
+                  : 'border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+              }`}
+            >
+              <Sun className="h-4 w-4 text-amber-500" />
+              <span>Light</span>
+            </button>
+            <button
+              onClick={() => theme !== 'dark' && toggleTheme()}
+              className={`flex items-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-semibold transition-all ${
+                theme === 'dark'
+                  ? 'border-blue-500 bg-blue-900/30 text-blue-400 shadow-xs'
+                  : 'border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+              }`}
+            >
+              <Moon className="h-4 w-4 text-blue-500" />
+              <span>Dark</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

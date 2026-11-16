@@ -132,6 +132,10 @@ export const analystService = {
   deleteSession: async (sessionId: string): Promise<void> => {
     await api.delete(`/analyst/sessions/${sessionId}`);
   },
+  getSuggestedPrompts: async (datasetId: string): Promise<Array<{ prompt: string; tag: string }>> => {
+    const res = await api.get<Array<{ prompt: string; tag: string }>>(`/analyst/suggested-prompts/${datasetId}`);
+    return res.data;
+  },
 };
 
 export const analyticsService = {

@@ -25,7 +25,7 @@ const NAV_ITEMS = [
 
 export const Sidebar: React.FC = () => {
   return (
-    <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 flex-col justify-between border-r border-slate-800 bg-slate-950/70 p-4 md:flex">
+    <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 flex-col justify-between border-r border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/70 p-4 md:flex transition-colors">
       <div className="space-y-1">
         <div className="px-3 py-2 text-[11px] font-semibold tracking-wider text-slate-500 uppercase">
           Analytics Workspace
@@ -40,15 +40,15 @@ export const Sidebar: React.FC = () => {
                 className={({ isActive }) =>
                   `flex items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
                     isActive
-                      ? 'bg-blue-600/10 text-blue-400 border border-blue-500/20 shadow-sm'
-                      : 'text-slate-400 hover:bg-slate-900 hover:text-slate-200'
+                      ? 'bg-blue-50 dark:bg-blue-600/10 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-500/20 shadow-xs'
+                      : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-slate-200'
                   }`
                 }
               >
-                <Icon className={`h-4 w-4 ${item.highlight ? 'text-blue-400 animate-pulse' : ''}`} />
+                <Icon className={`h-4 w-4 ${item.highlight ? 'text-blue-500 dark:text-blue-400 animate-pulse' : ''}`} />
                 <span>{item.name}</span>
                 {item.highlight && (
-                  <span className="ml-auto rounded-full bg-blue-500/20 px-2 py-0.5 text-[9px] font-semibold text-blue-400">
+                  <span className="ml-auto rounded-full bg-blue-100 dark:bg-blue-500/20 px-2 py-0.5 text-[9px] font-semibold text-blue-600 dark:text-blue-400">
                     Live
                   </span>
                 )}
@@ -58,9 +58,9 @@ export const Sidebar: React.FC = () => {
         </nav>
       </div>
 
-      <div className="rounded-xl border border-slate-800/80 bg-slate-900/40 p-3.5 text-xs text-slate-400">
-        <div className="flex items-center gap-2 text-slate-200 font-semibold mb-1">
-          <ShieldCheck className="h-4 w-4 text-emerald-400" />
+      <div className="rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/40 p-3.5 text-xs text-slate-600 dark:text-slate-400 shadow-xs">
+        <div className="flex items-center gap-2 text-slate-900 dark:text-slate-200 font-semibold mb-1">
+          <ShieldCheck className="h-4 w-4 text-emerald-500 dark:text-emerald-400" />
           <span>Sandboxed Core</span>
         </div>
         <p className="text-[11px] text-slate-500 leading-relaxed">

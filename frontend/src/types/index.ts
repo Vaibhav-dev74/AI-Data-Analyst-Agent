@@ -70,7 +70,7 @@ export interface DatasetPreview {
 }
 
 export interface ChartConfig {
-  type: 'bar' | 'line' | 'area' | 'pie' | 'scatter' | 'histogram' | 'heatmap';
+  type: 'bar' | 'line' | 'area' | 'pie' | 'scatter' | 'histogram' | 'heatmap' | 'donut' | 'radar' | 'composed' | 'horizontal_bar';
   title: string;
   x_axis?: string;
   y_axis?: string;

@@ -11,16 +11,15 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    return (localStorage.getItem('insightiq_theme') as Theme) || 'dark';
+    const saved = localStorage.getItem('insightiq_theme') as Theme;
+    if (saved === 'light' || saved === 'dark') return saved;
+    return 'dark';
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
     localStorage.setItem('insightiq_theme', theme);
   }, [theme]);
 
