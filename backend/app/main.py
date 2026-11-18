@@ -18,10 +18,36 @@ logger = logging.getLogger("insightiq")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Lifecycle manager for startup database table creation and cleanup."""
+    """Lifecycle manager for startup database table creation, initial seeding, and cleanup."""
     logger.info("Initializing database schema...")
     Base.metadata.create_all(bind=engine)
     logger.info("InsightIQ Engine online.")
+
+    # Auto-seed default demo analyst if database has no users
+    try:
+        from app.core.security import hash_password
+        from app.database.session import SessionLocal
+        from app.models import User
+
+        db = SessionLocal()
+        try:
+            demo_email = "analyst@insightiq.ai"
+            if not db.query(User).filter(User.email == demo_email).first():
+                demo_user = User(
+                    email=demo_email,
+                    hashed_password=hash_password("Password123!"),
+                    full_name="Senior Data Analyst",
+                    role="analyst",
+                    is_active=True
+                )
+                db.add(demo_user)
+                db.commit()
+                logger.info("Default demo analyst seeded: %s", demo_email)
+        finally:
+            db.close()
+    except Exception as e:
+        logger.warning("Could not auto-seed demo user: %s", e)
+
     yield
     logger.info("InsightIQ shutting down.")
 
@@ -36,13 +62,18 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS configuration
+# CORS configuration: explicit origins + regex for Vercel preview URLs
+configured_origins = settings.cors_origins_list
+allow_all = "*" in configured_origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins_list,
-    allow_credentials=True,
+    allow_origins=["*"] if allow_all else configured_origins,
+    allow_origin_regex=r"^https:\/\/.*\.vercel\.app$|^https:\/\/.*\.onrender\.com$|^http:\/\/localhost(:\d+)?$|^http:\/\/127\.0\.0\.1(:\d+)?$",
+    allow_credentials=not allow_all,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["Content-Disposition"],
 )
 
 # Mount API routers

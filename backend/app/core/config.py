@@ -32,6 +32,15 @@ class Settings(BaseSettings):
     # Database
     DATABASE_URL: str = "sqlite:///./insightiq.db"
 
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def normalize_db_url(cls, v: Any) -> str:
+        if isinstance(v, str):
+            # Fix legacy postgres:// dialect prefix commonly returned by Supabase/Render
+            if v.startswith("postgres://"):
+                return v.replace("postgres://", "postgresql://", 1)
+        return str(v)
+
     # Storage
     UPLOAD_DIR: str = "./uploads"
     MAX_UPLOAD_SIZE_MB: int = 50

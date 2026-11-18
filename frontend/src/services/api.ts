@@ -15,8 +15,11 @@ import {
   User,
 } from '../types';
 
-const VITE_API_URL = (import.meta as any).env?.VITE_API_URL;
-export const API_BASE = VITE_API_URL ? `${VITE_API_URL.replace(/\/$/, '')}/api` : '/api';
+const rawApiUrl = (import.meta as any).env?.VITE_API_URL || '';
+const cleanApiUrl = rawApiUrl.trim().replace(/\/+$/, '');
+export const API_BASE = cleanApiUrl
+  ? (cleanApiUrl.endsWith('/api') ? cleanApiUrl : `${cleanApiUrl}/api`)
+  : '/api';
 
 const api = axios.create({
   baseURL: API_BASE,
