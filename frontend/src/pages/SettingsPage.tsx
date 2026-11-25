@@ -6,6 +6,7 @@ import {
   Cpu,
   ShieldCheck,
   CheckCircle,
+  AlertCircle,
   Moon,
   Sun,
   Activity,
@@ -73,10 +74,22 @@ export const SettingsPage: React.FC = () => {
             </div>
             <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
               <span className="text-slate-400 text-[11px]">Runtime Gateway</span>
-              <p className="mt-1 font-semibold text-emerald-400 font-mono flex items-center gap-1">
-                <CheckCircle className="h-3.5 w-3.5" />
-                {health?.status === 'healthy' ? 'Online & Healthy' : 'Checking...'}
-              </p>
+              {health?.status === 'healthy' ? (
+                <p className="mt-1 font-semibold text-emerald-400 font-mono flex items-center gap-1">
+                  <CheckCircle className="h-3.5 w-3.5" />
+                  Online & Healthy
+                </p>
+              ) : health?.status === 'unreachable' ? (
+                <p className="mt-1 font-semibold text-red-400 font-mono flex items-center gap-1">
+                  <AlertCircle className="h-3.5 w-3.5" />
+                  Offline / Unreachable
+                </p>
+              ) : (
+                <p className="mt-1 font-semibold text-amber-400 font-mono flex items-center gap-1">
+                  <Activity className="h-3.5 w-3.5 animate-spin" />
+                  Checking...
+                </p>
+              )}
             </div>
             <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
               <span className="text-slate-400 text-[11px]">Agent Pipeline</span>

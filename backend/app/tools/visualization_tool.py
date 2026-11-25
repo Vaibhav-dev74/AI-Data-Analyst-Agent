@@ -1,6 +1,8 @@
 import re
 from typing import Any, Dict, List, Optional
 
+from app.core.json_utils import sanitize_for_json
+
 
 class VisualizationTool:
     """
@@ -33,13 +35,12 @@ class VisualizationTool:
         if len(rows) == 1 and len(columns) <= 2:
             return None
 
-        first_row = rows[0]
         numeric_cols = []
         text_cols = []
         date_cols = []
 
         for col in columns:
-            val = first_row.get(col)
+            val = next((r.get(col) for r in rows[:20] if r.get(col) is not None), None)
             col_lower = col.lower()
 
             # Date identification
@@ -50,6 +51,8 @@ class VisualizationTool:
             else:
                 # Test if numeric string
                 try:
+                    if val is None:
+                        raise ValueError("Empty sample")
                     float(str(val))
                     numeric_cols.append(col)
                 except (ValueError, TypeError):
@@ -153,9 +156,9 @@ class VisualizationTool:
         title = f"{y_label} by {x_label}"
 
         # Limit points for clean visualization if too many
-        chart_data = rows[:50]
+        chart_data = sanitize_for_json(rows[:50])
 
-        return {
+        return sanitize_for_json({
             "type": chart_type,
             "title": title,
             "x_axis": x_axis,
@@ -163,4 +166,4 @@ class VisualizationTool:
             "series_keys": series_keys[:5],  # max 5 series to keep chart clean
             "colors": cls.PALETTE[:len(series_keys) if series_keys else 1],
             "data": chart_data
-        }
+        })

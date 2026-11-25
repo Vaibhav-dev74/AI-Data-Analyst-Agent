@@ -3,6 +3,8 @@ from typing import Any, Dict, List, Optional
 import numpy as np
 import pandas as pd
 
+from app.core.json_utils import sanitize_for_json
+
 
 class PandasAnalyticsTool:
     """
@@ -37,8 +39,7 @@ class PandasAnalyticsTool:
         desc["median"] = [float(numeric_df[col].median()) for col in desc["column"]]
         desc["skew"] = [round(float(numeric_df[col].skew()), 3) if not numeric_df[col].isnull().all() else 0 for col in desc["column"]]
 
-        desc = desc.replace({np.nan: None})
-        rows = desc.to_dict(orient="records")
+        rows = sanitize_for_json(desc.to_dict(orient="records"))
 
         return {
             "success": True,
@@ -79,14 +80,14 @@ class PandasAnalyticsTool:
                     })
         pairs.sort(key=lambda x: abs(x["correlation"]), reverse=True)
 
-        return {
+        return sanitize_for_json({
             "success": True,
             "operation": "correlation_matrix",
             "matrix_columns": list(corr_reset.columns),
             "matrix_rows": corr_reset.to_dict(orient="records"),
             "top_correlated_pairs": pairs[:10],
             "execution_time_ms": round((time.time() - start) * 1000, 2)
-        }
+        })
 
     @classmethod
     def group_and_aggregate(
@@ -111,16 +112,15 @@ class PandasAnalyticsTool:
         grouped = df.groupby(group_by_col)[agg_col].agg(agg_func).reset_index()
         grouped.columns = [group_by_col, f"{agg_col}_{agg_func}"]
         grouped = grouped.sort_values(by=f"{agg_col}_{agg_func}", ascending=False).head(limit)
-        grouped = grouped.replace({np.nan: None})
 
-        return {
+        return sanitize_for_json({
             "success": True,
             "operation": "group_and_aggregate",
             "columns": list(grouped.columns),
             "rows": grouped.to_dict(orient="records"),
             "row_count": len(grouped),
             "execution_time_ms": round((time.time() - start) * 1000, 2)
-        }
+        })
 
     @classmethod
     def detect_outliers_iqr(
@@ -147,7 +147,7 @@ class PandasAnalyticsTool:
 
         sample_outliers = outliers.head(10).replace({np.nan: None}).to_dict(orient="records")
 
-        return {
+        return sanitize_for_json({
             "success": True,
             "operation": "detect_outliers_iqr",
             "column": column,
@@ -161,4 +161,4 @@ class PandasAnalyticsTool:
             "outlier_percent": outlier_percent,
             "sample_outliers": sample_outliers,
             "execution_time_ms": round((time.time() - start) * 1000, 2)
-        }
+        })

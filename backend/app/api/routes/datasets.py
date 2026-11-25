@@ -123,11 +123,15 @@ def get_dataset_preview(
     if not dataset:
         raise HTTPException(status_code=404, detail="Dataset not found or access unauthorized.")
 
-    if not os.path.exists(dataset.file_path):
-        raise HTTPException(status_code=404, detail="Underlying dataset file could not be found.")
+    resolved_path = DatasetService.resolve_dataset_file(dataset.file_path, dataset.original_filename)
+    if not resolved_path:
+        raise HTTPException(
+            status_code=404,
+            detail="Underlying dataset file could not be found in storage. Please re-upload the dataset."
+        )
 
     try:
-        preview = DatasetService.get_preview(dataset.file_path, dataset.file_type, limit=limit)
+        preview = DatasetService.get_preview(resolved_path, dataset.file_type, limit=limit)
         return DatasetPreview(
             id=dataset.id,
             name=dataset.name,
@@ -152,6 +156,7 @@ def get_dataset_profile(
         raise HTTPException(status_code=404, detail="Dataset not found or access unauthorized.")
 
     columns = db.query(DatasetColumn).filter(DatasetColumn.dataset_id == dataset.id).all()
+    total_rows = dataset.row_count or 0
 
     return {
         "id": dataset.id,
@@ -159,9 +164,13 @@ def get_dataset_profile(
         "metadata_profile": dataset.metadata_profile,
         "columns": [
             {
+                "id": c.id,
+                "column_name": c.column_name,
                 "name": c.column_name,
+                "data_type": c.data_type,
                 "type": c.data_type,
                 "null_count": c.null_count,
+                "null_percentage": round((c.null_count / total_rows * 100), 2) if total_rows > 0 else 0.0,
                 "unique_count": c.unique_count,
                 "sample_values": c.sample_values,
                 "statistics": c.statistics
@@ -183,15 +192,25 @@ def clean_dataset(
     if not dataset:
         raise HTTPException(status_code=404, detail="Dataset not found or access unauthorized.")
 
+    resolved_path = DatasetService.resolve_dataset_file(dataset.file_path, dataset.original_filename)
+    if not resolved_path:
+        raise HTTPException(
+            status_code=404,
+            detail="Underlying dataset file could not be found in storage. Please re-upload the dataset."
+        )
+
     try:
-        CleaningService.clean_dataset(
-            file_path=dataset.file_path,
+        clean_res = CleaningService.clean_dataset(
+            file_path=resolved_path,
             file_type=dataset.file_type,
             remove_duplicates=req.remove_duplicates,
             fill_null_method=req.fill_null_method,
             drop_null_threshold=req.drop_null_threshold,
             columns_to_drop=req.columns_to_drop
         )
+
+        dataset.file_path = clean_res.get("file_path", resolved_path)
+        dataset.file_type = clean_res.get("file_type", dataset.file_type)
 
         # Re-profile updated dataset
         _, metadata_profile, columns_profile = DatasetService.profile_dataset(dataset.file_path, dataset.file_type)

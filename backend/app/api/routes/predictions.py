@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.dependencies import get_current_user
+from app.core.json_utils import sanitize_for_json
 from app.models import Dataset, PredictionModel, User, UserActivity
 from app.predictions.anomaly import AnomalyDetectionService
 from app.predictions.clustering import ClusteringService
@@ -12,6 +13,7 @@ from app.schemas.prediction import (
     AnomalyRequest, AnomalyResponse, ClusteringRequest, ClusteringResponse,
     ForecastRequest, ForecastResponse
 )
+from app.services.dataset_service import DatasetService
 
 router = APIRouter(prefix="/predictions", tags=["Predictive Analytics"])
 
@@ -30,18 +32,19 @@ def generate_forecast(
     if not dataset:
         raise HTTPException(status_code=404, detail="Dataset not found or access denied.")
 
-    if not os.path.exists(dataset.file_path):
-        raise HTTPException(status_code=404, detail="Dataset file missing on disk.")
+    resolved_path = DatasetService.resolve_dataset_file(dataset.file_path, dataset.original_filename)
+    if not resolved_path:
+        raise HTTPException(status_code=404, detail="Dataset file missing on disk. Please re-upload the dataset.")
 
     try:
-        res = ForecastingService.forecast(
-            file_path=dataset.file_path,
+        res = sanitize_for_json(ForecastingService.forecast(
+            file_path=resolved_path,
             target_column=req.target_column,
             date_column=req.date_column,
             periods=req.periods,
             model_algorithm=req.model_algorithm or "linear",
             file_type=dataset.file_type
-        )
+        ))
 
         # Record prediction model run
         model_rec = PredictionModel(
@@ -79,16 +82,17 @@ def detect_anomalies(
     if not dataset:
         raise HTTPException(status_code=404, detail="Dataset not found or access denied.")
 
-    if not os.path.exists(dataset.file_path):
-        raise HTTPException(status_code=404, detail="Dataset file missing on disk.")
+    resolved_path = DatasetService.resolve_dataset_file(dataset.file_path, dataset.original_filename)
+    if not resolved_path:
+        raise HTTPException(status_code=404, detail="Dataset file missing on disk. Please re-upload the dataset.")
 
     try:
-        res = AnomalyDetectionService.detect_anomalies(
-            file_path=dataset.file_path,
+        res = sanitize_for_json(AnomalyDetectionService.detect_anomalies(
+            file_path=resolved_path,
             features=req.features,
             contamination=req.contamination,
             file_type=dataset.file_type
-        )
+        ))
 
         # Record prediction model run
         model_rec = PredictionModel(
@@ -126,16 +130,17 @@ def segment_clusters(
     if not dataset:
         raise HTTPException(status_code=404, detail="Dataset not found or access denied.")
 
-    if not os.path.exists(dataset.file_path):
-        raise HTTPException(status_code=404, detail="Dataset file missing on disk.")
+    resolved_path = DatasetService.resolve_dataset_file(dataset.file_path, dataset.original_filename)
+    if not resolved_path:
+        raise HTTPException(status_code=404, detail="Dataset file missing on disk. Please re-upload the dataset.")
 
     try:
-        res = ClusteringService.segment(
-            file_path=dataset.file_path,
+        res = sanitize_for_json(ClusteringService.segment(
+            file_path=resolved_path,
             features=req.features,
             n_clusters=req.n_clusters,
             file_type=dataset.file_type
-        )
+        ))
 
         # Record prediction model run
         model_rec = PredictionModel(

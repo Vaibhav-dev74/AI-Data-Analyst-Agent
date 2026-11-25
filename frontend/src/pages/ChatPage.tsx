@@ -48,6 +48,7 @@ export const ChatPage: React.FC = () => {
   const [suggestedPrompts, setSuggestedPrompts] = useState<PromptSuggestion[]>([]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const skipNextSessionFetchRef = useRef(false);
 
   // Load datasets & conversation history
   useEffect(() => {
@@ -191,6 +192,10 @@ export const ChatPage: React.FC = () => {
       setMessages([]);
       return;
     }
+    if (skipNextSessionFetchRef.current) {
+      skipNextSessionFetchRef.current = false;
+      return;
+    }
     const loadSession = async () => {
       try {
         const detail = await analystService.getSession(currentSessionId);
@@ -233,11 +238,13 @@ export const ChatPage: React.FC = () => {
       // Append assistant message
       setMessages((prev) => [...prev, assistantMsg]);
 
-      // Refresh session history list
+      // Refresh session history list & lock onto active session without flicker
       const updatedHistory = await analystService.getHistory();
       setSessions(updatedHistory);
-      if (!currentSessionId && updatedHistory.length > 0) {
-        setCurrentSessionId(updatedHistory[0].id);
+      const nextSessionId = assistantMsg.session_id || updatedHistory[0]?.id;
+      if (!currentSessionId && nextSessionId) {
+        skipNextSessionFetchRef.current = true;
+        setCurrentSessionId(nextSessionId);
       }
     } catch (err: any) {
       const errorMsg: ChatMessage = {
@@ -362,6 +369,33 @@ export const ChatPage: React.FC = () => {
 
       {/* ================= CENTER PANE: Conversational Stream ================= */}
       <div className="flex flex-1 flex-col rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/40 overflow-hidden shadow-xs transition-colors">
+        {/* Compact Mobile Dataset Bar */}
+        <div className="flex lg:hidden items-center gap-2 border-b border-slate-200 dark:border-slate-800 px-4 py-2.5 bg-slate-50/80 dark:bg-slate-950/60">
+          <Database className="h-4 w-4 text-blue-500 shrink-0" />
+          <select
+            value={selectedDatasetId}
+            onChange={(e) => {
+              setSelectedDatasetId(e.target.value);
+              handleStartNewSession();
+            }}
+            className="h-8 flex-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 text-xs text-slate-800 dark:text-slate-200 focus:border-blue-500 focus:outline-none"
+          >
+            {datasets.map((d) => (
+              <option key={d.id} value={d.id}>
+                {d.name} ({d.file_type.toUpperCase()})
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={handleStartNewSession}
+            className="flex h-8 items-center gap-1 rounded-lg bg-blue-600 px-2.5 text-[11px] font-semibold text-white hover:bg-blue-500 shrink-0"
+            title="New Chat Session"
+          >
+            <Plus className="h-3.5 w-3.5" />
+            <span>New</span>
+          </button>
+        </div>
+
         {/* Messages Viewport */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
           {messages.length === 0 ? (

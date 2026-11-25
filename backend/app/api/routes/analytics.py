@@ -4,8 +4,10 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.dependencies import get_current_user
+from app.core.json_utils import sanitize_for_json
 from app.models import Dataset, User, UserActivity
 from app.schemas.analytics import AnalyzeRequest, AnalyzeResponse
+from app.services.dataset_service import DatasetService
 from app.tools.pandas_tool import PandasAnalyticsTool
 from app.tools.sql_tool import DuckDBSqlTool
 from app.tools.visualization_tool import VisualizationTool
@@ -27,8 +29,12 @@ def run_analytics_operation(
     if not dataset:
         raise HTTPException(status_code=404, detail="Dataset not found or access denied.")
 
-    if not os.path.exists(dataset.file_path):
-        raise HTTPException(status_code=404, detail="Dataset file missing on disk.")
+    resolved_path = DatasetService.resolve_dataset_file(dataset.file_path, dataset.original_filename)
+    if not resolved_path:
+        raise HTTPException(
+            status_code=404,
+            detail="Dataset file missing on disk. Please re-upload the dataset."
+        )
 
     op = req.operation.lower()
     params = req.parameters or {}
@@ -38,7 +44,7 @@ def run_analytics_operation(
         if not req.sql_query:
             raise HTTPException(status_code=400, detail="SQL query required for SQL operation.")
         res = DuckDBSqlTool.execute_query(
-            file_path=dataset.file_path,
+            file_path=resolved_path,
             query=req.sql_query,
             file_type=dataset.file_type
         )
@@ -46,7 +52,7 @@ def run_analytics_operation(
             raise HTTPException(status_code=400, detail=res.get("error", "Query failed."))
 
         cols = res["columns"]
-        rows = res["rows"]
+        rows = sanitize_for_json(res["rows"])
         chart_cfg = VisualizationTool.recommend_chart(cols, rows)
         explanation = f"Executed DuckDB SQL query in {res['execution_time_ms']}ms."
 
@@ -65,7 +71,7 @@ def run_analytics_operation(
     elif op == "summary":
         cols = params.get("columns")
         res = PandasAnalyticsTool.descriptive_statistics(
-            file_path=dataset.file_path,
+            file_path=resolved_path,
             file_type=dataset.file_type,
             columns=cols
         )
@@ -76,7 +82,7 @@ def run_analytics_operation(
             operation="summary",
             dataset_id=dataset.id,
             columns=res["columns"],
-            rows=res["rows"],
+            rows=sanitize_for_json(res["rows"]),
             row_count=len(res["rows"]),
             execution_time_ms=res["execution_time_ms"],
             chart_config=None,
@@ -87,7 +93,7 @@ def run_analytics_operation(
     elif op == "correlation":
         cols = params.get("columns")
         res = PandasAnalyticsTool.correlation_matrix(
-            file_path=dataset.file_path,
+            file_path=resolved_path,
             file_type=dataset.file_type,
             columns=cols
         )
@@ -98,10 +104,10 @@ def run_analytics_operation(
             operation="correlation",
             dataset_id=dataset.id,
             columns=res["matrix_columns"],
-            rows=res["matrix_rows"],
+            rows=sanitize_for_json(res["matrix_rows"]),
             row_count=len(res["matrix_rows"]),
             execution_time_ms=res["execution_time_ms"],
-            summary_stats={"top_pairs": res["top_correlated_pairs"]},
+            summary_stats=sanitize_for_json({"top_pairs": res["top_correlated_pairs"]}),
             explanation="Computed Pearson correlation coefficients across numerical attributes."
         )
 
@@ -114,7 +120,7 @@ def run_analytics_operation(
             raise HTTPException(status_code=400, detail="Missing 'group_by' or 'metric' parameter.")
 
         res = PandasAnalyticsTool.group_and_aggregate(
-            file_path=dataset.file_path,
+            file_path=resolved_path,
             group_by_col=group_col,
             agg_col=agg_col,
             agg_func=agg_func,
@@ -124,7 +130,7 @@ def run_analytics_operation(
             raise HTTPException(status_code=400, detail=res["error"])
 
         cols = res["columns"]
-        rows = res["rows"]
+        rows = sanitize_for_json(res["rows"])
         chart_cfg = VisualizationTool.recommend_chart(cols, rows)
 
         return AnalyzeResponse(
@@ -145,7 +151,7 @@ def run_analytics_operation(
             raise HTTPException(status_code=400, detail="Missing 'column' parameter.")
 
         res = PandasAnalyticsTool.detect_outliers_iqr(
-            file_path=dataset.file_path,
+            file_path=resolved_path,
             column=col,
             file_type=dataset.file_type
         )
@@ -156,16 +162,16 @@ def run_analytics_operation(
             operation="outliers",
             dataset_id=dataset.id,
             columns=[col, "status"],
-            rows=res["sample_outliers"],
+            rows=sanitize_for_json(res["sample_outliers"]),
             row_count=res["outlier_count"],
             execution_time_ms=res["execution_time_ms"],
-            summary_stats={
+            summary_stats=sanitize_for_json({
                 "outlier_count": res["outlier_count"],
                 "outlier_percent": res["outlier_percent"],
                 "iqr": res["iqr"],
                 "lower_bound": res["lower_bound"],
                 "upper_bound": res["upper_bound"]
-            },
+            }),
             explanation=f"Identified {res['outlier_count']} outliers ({res['outlier_percent']}%) in {col} using IQR."
         )
 

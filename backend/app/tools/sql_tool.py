@@ -7,6 +7,8 @@ import pandas as pd
 import sqlparse
 from sqlparse.sql import Statement
 
+from app.core.json_utils import sanitize_for_json
+
 
 class SQLSecurityError(Exception):
     """Raised when a query violates security policies."""
@@ -94,7 +96,7 @@ class DuckDBSqlTool:
 
         con = duckdb.connect(database=":memory:", read_only=False)
         try:
-            normalized_path = file_path.replace("\\", "/")
+            normalized_path = file_path.replace("\\", "/").replace("'", "''")
 
             if file_type.lower() == "csv":
                 con.execute(f"CREATE VIEW dataset AS SELECT * FROM read_csv_auto('{normalized_path}', header=True, sample_size=200000, ignore_errors=true);")
@@ -112,16 +114,14 @@ class DuckDBSqlTool:
 
             execution_time = round((time.time() - start_time) * 1000, 2)
 
-            # Replace NaNs/Infs for valid JSON serialization
-            result_df = result_df.where(pd.notnull(result_df), None)
-
-            columns = list(result_df.columns)
-            # Normalize timestamp and object columns
+            columns = [str(c) for c in result_df.columns]
+            # Normalize timestamp columns before dict serialization
             for col in columns:
                 if "datetime" in str(result_df[col].dtype).lower() or "date" in str(result_df[col].dtype).lower():
                     result_df[col] = result_df[col].astype(str)
 
-            rows = result_df.to_dict(orient="records")
+            # Deep sanitize ensures NaN, Inf, numpy scalars, and Decimals become JSON/Postgres safe
+            rows = sanitize_for_json(result_df.to_dict(orient="records"))
 
             return {
                 "success": True,

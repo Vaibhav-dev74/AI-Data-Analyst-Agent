@@ -3,6 +3,7 @@ import re
 from typing import Any, Dict, List
 from app.agents.state import AnalystState
 from app.agents.llm_provider import LLMProvider
+from app.core.json_utils import sanitize_for_json
 
 
 def insight_generation_node(state: AnalystState) -> Dict[str, Any]:
@@ -26,7 +27,7 @@ def insight_generation_node(state: AnalystState) -> Dict[str, Any]:
 
     rows = raw_result.get("rows", [])
     columns = raw_result.get("columns", [])
-    sample_rows = rows[:10]  # Grounding context
+    sample_rows = sanitize_for_json(rows[:10])  # Grounding context
 
     prompt = f"""
 You are a Principal Business Intelligence Analyst.

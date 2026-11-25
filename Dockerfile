@@ -39,7 +39,7 @@ COPY sample_datasets/ ./sample_datasets/
 COPY --from=frontend-builder /app/frontend/dist /app/frontend/dist
 
 # Ensure upload and report storage directories exist
-RUN mkdir -p /app/backend/uploads /app/reports_generated
+RUN mkdir -p /app/uploads /app/backend/uploads /app/reports_generated /app/backend/reports_generated
 
 EXPOSE 8000
 

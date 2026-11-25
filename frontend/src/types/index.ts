@@ -92,6 +92,7 @@ export interface AnalysisResultOut {
 
 export interface ChatMessage {
   id: string;
+  session_id?: string;
   role: 'user' | 'assistant' | 'system';
   content: string;
   chart_config?: ChartConfig;

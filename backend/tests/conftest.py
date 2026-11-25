@@ -4,6 +4,7 @@ import sys
 os.environ["LANGCHAIN_TRACING_V2"] = "false"
 os.environ["LANGSMITH_TRACING"] = "false"
 os.environ["AI_PROVIDER"] = "mock"
+os.environ["ENVIRONMENT"] = "test"
 
 # Ensure backend root is on Python module path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))

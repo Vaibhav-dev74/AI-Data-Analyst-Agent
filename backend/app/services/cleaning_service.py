@@ -76,11 +76,16 @@ class CleaningService:
                         else:
                             df[col] = df[col].fillna("Unknown")
 
-        # Save cleaned file back
+        # Save cleaned file back (convert legacy .xls to .xlsx since openpyxl writes .xlsx)
+        output_path = file_path
+        output_type = file_type
         if file_type == "csv":
-            df.to_csv(file_path, index=False)
+            df.to_csv(output_path, index=False)
         else:
-            df.to_excel(file_path, index=False)
+            if file_type == "xls" and output_path.lower().endswith(".xls"):
+                output_path = output_path[:-4] + ".xlsx"
+                output_type = "xlsx"
+            df.to_excel(output_path, index=False)
 
         return {
             "initial_rows": initial_rows,
@@ -89,5 +94,7 @@ class CleaningService:
             "rows_dropped_nulls": rows_dropped_nulls,
             "columns_dropped": dropped_cols,
             "imputed_cells": imputed_cells,
-            "new_size_bytes": os.path.getsize(file_path)
+            "file_path": output_path,
+            "file_type": output_type,
+            "new_size_bytes": os.path.getsize(output_path)
         }

@@ -7,10 +7,12 @@ from app.agents.graph import run_analyst_agent
 from app.agents.prompt_generator import generate_grounded_prompts
 from app.core.database import get_db
 from app.core.dependencies import get_current_user
-from app.models import AnalysisResult, AnalysisSession, ChatMessage, Dataset, User, UserActivity
+from app.core.json_utils import sanitize_for_json
+from app.models import AnalysisResult, AnalysisSession, ChatMessage, Dataset, User, UserActivity, utc_now
 from app.schemas.chat import (
     AnalysisResultOut, ChartConfig, ChatRequest, MessageOut, SessionDetail, SessionSummary
 )
+from app.services.dataset_service import DatasetService
 
 router = APIRouter(prefix="/analyst", tags=["AI Analyst Agent"])
 
@@ -30,8 +32,12 @@ def chat_with_agent(
     if not dataset:
         raise HTTPException(status_code=404, detail="Dataset not found or access denied.")
 
-    if not os.path.exists(dataset.file_path):
-        raise HTTPException(status_code=404, detail="Underlying dataset file is missing from storage.")
+    resolved_path = DatasetService.resolve_dataset_file(dataset.file_path, dataset.original_filename)
+    if not resolved_path:
+        raise HTTPException(
+            status_code=404,
+            detail="Underlying dataset file is missing from storage. Please re-upload the dataset."
+        )
 
     # 1. Manage or create session
     session = None
@@ -52,6 +58,8 @@ def chat_with_agent(
         db.add(session)
         db.commit()
         db.refresh(session)
+    else:
+        session.updated_at = utc_now()
 
     # 2. Record User Message
     user_msg = ChatMessage(
@@ -66,7 +74,7 @@ def chat_with_agent(
     agent_output = run_analyst_agent(
         question=req.message,
         dataset_id=dataset.id,
-        file_path=dataset.file_path,
+        file_path=resolved_path,
         file_type=dataset.file_type,
         dataset_profile=dataset.metadata_profile or {}
     )
@@ -75,10 +83,10 @@ def chat_with_agent(
     generated_sql = agent_output.get("generated_sql")
     query_plan = agent_output.get("query_plan") or {}
     analytical_method = query_plan.get("analytical_method", "DuckDB Analytical Engine")
-    chart_cfg = agent_output.get("chart_config")
-    raw_res = agent_output.get("raw_result") or {}
+    chart_cfg = sanitize_for_json(agent_output.get("chart_config"))
+    raw_res = sanitize_for_json(agent_output.get("raw_result") or {})
     findings = agent_output.get("findings")
-    recommendations = agent_output.get("recommendations", [])
+    recommendations = sanitize_for_json(agent_output.get("recommendations", []))
 
     # 4. Record Assistant Message
     assistant_msg = ChatMessage(
@@ -113,6 +121,7 @@ def chat_with_agent(
         action="ran_query",
         details={"session_id": session.id, "dataset_id": dataset.id, "query_type": analytical_method}
     ))
+    session.updated_at = utc_now()
     db.commit()
     db.refresh(assistant_msg)
 
@@ -128,6 +137,7 @@ def chat_with_agent(
 
     return MessageOut(
         id=assistant_msg.id,
+        session_id=session.id,
         role=assistant_msg.role,
         content=assistant_msg.content,
         chart_config=chart_out,

@@ -22,11 +22,16 @@ def test_dataset_upload_and_preview(authenticated_client):
     assert len(pdata["rows"]) == 100
     assert "revenue" in pdata["columns"]
 
-    # Profile
+    # Profile contract verification (must match frontend ColumnProfile)
     profile_res = authenticated_client.get(f"/api/datasets/{dataset_id}/profile")
     assert profile_res.status_code == 200
     prof = profile_res.json()
     assert "metadata_profile" in prof
+    assert len(prof["columns"]) > 5
+    first_col = prof["columns"][0]
+    assert "column_name" in first_col
+    assert "data_type" in first_col
+    assert "null_percentage" in first_col
 
 
 def test_invalid_file_extension(authenticated_client):

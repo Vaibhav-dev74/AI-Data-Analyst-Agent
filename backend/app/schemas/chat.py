@@ -28,6 +28,7 @@ class AnalysisResultOut(BaseModel):
 
 class MessageOut(BaseModel):
     id: str
+    session_id: Optional[str] = None
     role: str
     content: str
     chart_config: Optional[ChartConfig] = None

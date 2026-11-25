@@ -55,6 +55,10 @@ export const PredictionsPage: React.FC = () => {
 
   useEffect(() => {
     if (!selectedDatasetId) return;
+    setForecastResult(null);
+    setAnomalyResult(null);
+    setClusteringResult(null);
+    setError(null);
     const fetchColumns = async () => {
       try {
         const prof = await datasetService.getProfile(selectedDatasetId);

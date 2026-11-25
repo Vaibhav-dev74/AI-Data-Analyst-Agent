@@ -6,6 +6,7 @@ from fastapi.responses import FileResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
 
+from app.core.config import settings
 from app.core.database import get_db
 from app.core.dependencies import get_current_user
 from app.core.security import decode_token
@@ -13,12 +14,11 @@ from app.models import Dataset, GeneratedReport, User, UserActivity
 from app.reports.excel_generator import ExcelReportGenerator
 from app.reports.pdf_generator import PDFReportGenerator
 from app.schemas.report import ReportDetail, ReportGenerateRequest, ReportOut
+from app.services.dataset_service import DatasetService
 
 router = APIRouter(prefix="/reports", tags=["Executive Reports"])
 
-# Robust absolute directory resolution
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-REPORTS_DIR = os.path.abspath(os.path.join(BASE_DIR, "reports_generated"))
+REPORTS_DIR = settings.REPORTS_DIR
 os.makedirs(REPORTS_DIR, exist_ok=True)
 
 security_scheme = HTTPBearer(auto_error=False)
@@ -74,8 +74,7 @@ def generate_report(
     if not dataset:
         raise HTTPException(status_code=404, detail="Dataset not found or access denied.")
 
-    if not os.path.exists(dataset.file_path):
-        raise HTTPException(status_code=404, detail="Dataset file missing on disk.")
+    resolved_path = DatasetService.resolve_dataset_file(dataset.file_path, dataset.original_filename)
 
     report_fmt = req.format.lower()
     if report_fmt not in ("pdf", "excel"):
@@ -100,9 +99,10 @@ def generate_report(
 
     unique_id = str(uuid.uuid4())[:8]
     ext = "pdf" if report_fmt == "pdf" else "xlsx"
-    clean_title = "".join(c for c in req.title if c.isalnum() or c in (" ", "_", "-")).strip()
+    clean_title = "".join(c for c in req.title if c.isalnum() or c in (" ", "_", "-")).strip() or "Executive_Report"
     filename = f"{clean_title.replace(' ', '_')}_{unique_id}.{ext}"
     output_path = os.path.abspath(os.path.join(REPORTS_DIR, filename))
+    os.makedirs(REPORTS_DIR, exist_ok=True)
 
     try:
         if report_fmt == "pdf":
@@ -120,7 +120,7 @@ def generate_report(
                 output_path=output_path,
                 title=req.title,
                 dataset_name=dataset.name,
-                file_path=dataset.file_path,
+                file_path=resolved_path or dataset.file_path,
                 file_type=dataset.file_type,
                 profile=profile,
                 findings=findings,
@@ -221,12 +221,16 @@ def download_report(
         if os.path.exists(alt_path):
             target_path = alt_path
         else:
-            # Self-healing: Regenerate the report on demand if dataset file exists
+            # Self-healing: Regenerate directly into REPORTS_DIR from database profile & summary
+            # Works even if ephemeral cloud container restarted and cleared disk files
             ds = db.query(Dataset).filter(Dataset.id == report.dataset_id).first()
-            if ds and os.path.exists(ds.file_path):
+            if ds:
+                os.makedirs(REPORTS_DIR, exist_ok=True)
+                target_path = alt_path
                 profile = ds.metadata_profile or {}
                 findings = report.executive_summary.get("findings", "") if report.executive_summary else ""
                 recommendations = report.executive_summary.get("recommendations", []) if report.executive_summary else []
+                resolved_ds_path = DatasetService.resolve_dataset_file(ds.file_path, ds.original_filename)
 
                 if report.format == "pdf":
                     PDFReportGenerator.generate(
@@ -243,14 +247,14 @@ def download_report(
                         output_path=target_path,
                         title=report.title,
                         dataset_name=ds.name,
-                        file_path=ds.file_path,
+                        file_path=resolved_ds_path or ds.file_path,
                         file_type=ds.file_type,
                         profile=profile,
                         findings=findings,
                         recommendations=recommendations
                     )
             else:
-                raise HTTPException(status_code=404, detail="Report file not found on disk.")
+                raise HTTPException(status_code=404, detail="Report file and parent dataset no longer exist.")
 
     media_type = (
         "application/pdf"
