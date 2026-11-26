@@ -5,6 +5,7 @@ import pandas as pd
 
 from app.core.config import Settings
 from app.core.json_utils import sanitize_for_json
+from app.database.session import build_sqlalchemy_url
 from app.tools.sql_tool import DuckDBSqlTool
 from app.tools.visualization_tool import VisualizationTool
 
@@ -18,6 +19,10 @@ def test_settings_production_normalization():
     assert s1.DATABASE_URL == "postgresql://user:pass@aws-0-us-east-1.pooler.supabase.com:6543/postgres"
     assert s1.cors_origins_list == ["https://app.vercel.app", "http://localhost:5173"]
     assert s1.GEMINI_API_KEY == "AIzaFakeKey123"
+
+    supa_url = build_sqlalchemy_url(s1.DATABASE_URL)
+    assert "sslmode=require" in supa_url
+    assert supa_url.startswith("postgresql")
 
     s2 = Settings(
         DATABASE_URL="",
